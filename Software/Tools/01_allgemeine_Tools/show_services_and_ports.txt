@@ -1,0 +1,112 @@
+[0;34m╔════════════════════════════════════════════════════════════╗[0m
+[0;34m║     Systemd Services und aktive Ports - Übersicht          ║[0m
+[0;34m║                  (Optimierte Version)                      ║[0m
+[0;34m╚════════════════════════════════════════════════════════════╝[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m1. SYSTEMD SERVICES (Datenbanken & Container)[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+  containerd.service            loaded active running containerd container runtime
+  docker.service                loaded active running Docker Application Container Engine
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m2. NODE.JS PROZESSE[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;36mPID 2912: fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc[0m
+[0;36mPID 929074: /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=922934 --enable-crash-reporter=c1579d36-417f-47bb-833c-9e3286e2daa3,no_channel --user-data-dir=/home/y/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,5711941736741079522,5077232676767567885,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync --disable-features=CalculateNativeWinOcclusion,FontationsLinuxSystemFonts,ScreenAIOCREnabled,SpareRendererForSitePerProcess --variations-seed-version[0m
+[0;36mPID 929075: /opt/brave-bin/brave --type=utility --utility-sub-type=network.mojom.NetworkService --lang=de --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=297000 --enable-crash-reporter=b224e022-977d-4abd-8218-15364fe7a8f4, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,7990448020502819538,13004760072557679293,524288 --field-trial-handle=3,i,18323437761677937663,7499247140008814765,262144 --disable-features=EyeDropper --variations-seed-version=main@cf1e4701f7f52a0ffba94913856648d325d3ed68 --trace-process-track-uuid=3190709265550342496[0m
+[0;36mPID 929076: /proc/self/exe --type=utility --utility-sub-type=network.mojom.NetworkService --lang=de --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --enable-crash-reporter=cbad9abe-8e4f-4970-8225-312c336a9b94,no_channel --user-data-dir=/home/y/.config/obsidian --standard-schemes=app --secure-schemes=app --fetch-schemes=app --streaming-schemes=app --code-cache-schemes=app --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6075849816614600090,16589967477739482267,262144 --enable-features=PdfUseShowSaveFilePicker,SharedArrayBuffer --disable-features=LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708991934122588[0m
+[0;36mPID 929077: /opt/brave-bin/brave --type=utility --utility-sub-type=storage.mojom.StorageService --lang=de --service-sandbox-type=utility --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=297000 --enable-crash-reporter=b224e022-977d-4abd-8218-15364fe7a8f4, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,2921405986594643536,7511543905503896955,524288 --field-trial-handle=3,i,18323437761677937663,7499247140008814765,262144 --disable-features=EyeDropper --variations-seed-version=main@cf1e4701f7f52a0ffba94913856648d325d3ed68 --trace-process-track-uuid=3190709266487384345[0m
+[0;36mPID 929084: /opt/brave-bin/brave --type=gpu-process --ozone-platform=wayland --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=297000 --enable-crash-reporter=b224e022-977d-4abd-8218-15364fe7a8f4, --change-stack-guard-on-fork=enable --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --shared-files --metrics-shmem-handle=4,i,17746343370261737216,97060196147297333,262144 --field-trial-handle=3,i,18323437761677937663,7499247140008814765,262144 --disable-features=EyeDropper --variations-seed-version=main@cf1e4701f7f52a0ffba94913856648d325d3ed68 --trace-process-track-uuid=3190709267424426194[0m
+[0;36mPID 929643: /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=922934 --enable-crash-reporter=c1579d36-417f-47bb-833c-9e3286e2daa3,no_channel --user-data-dir=/home/y/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,5711941736741079522,5077232676767567885,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync --disable-features=CalculateNativeWinOcclusion,FontationsLinuxSystemFonts,ScreenAIOCREnabled,SpareRendererForSitePerProcess --variations-seed-version[0m
+[0;36mPID 929653: /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=922934 --enable-crash-reporter=c1579d36-417f-47bb-833c-9e3286e2daa3,no_channel --user-data-dir=/home/y/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,5711941736741079522,5077232676767567885,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync --disable-features=CalculateNativeWinOcclusion,FontationsLinuxSystemFonts,ScreenAIOCREnabled,SpareRendererForSitePerProcess --variations-seed-version[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m3. PYTHON/FLASK PROZESSE[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[1;33mPython läuft, aber keine Flask/Benning-Apps gefunden[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m4. DOCKER CONTAINER[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+CONTAINER ID   NAMES                 IMAGE       STATUS      PORTS
+[1;33m31ff5ec3a0da   benning-flask-mysql   mysql:8.0   Up 3 days   33060/tcp, 0.0.0.0:3307->3306/tcp, [::]:3307->3306/tcp[0m [0;31m← BENNING[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m5. PODMAN CONTAINER[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;31mKeine Podman Container laufen[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m6. AKTIVE PORTS MIT PROZESSEN[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;31mKeine relevanten Ports gefunden[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m7. PORT-ZUSAMMENFASSUNG (Wichtige Ports)[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;36m○[0m Port [0;36m3000[0m - Node.js (React-App) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m3001[0m - Node.js (Alternative) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m5000[0m - Flask (Python-App) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m3306[0m - MySQL (Standard) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m3307[0m - MySQL (Flask-Container) [0;32mFREI[0m
+
+[0;34m╚════════════════════════════════════════════════════════════╝[0m
+
+[0;36mHinweis: Benning-relevante Prozesse sind [0;31mROT[0;36m markiert[0m
+[0;34m╔════════════════════════════════════════════════════════════╗[0m
+[0;34m║     Systemd Services und aktive Ports - Übersicht          ║[0m
+[0;34m║                  (Optimierte Version)                      ║[0m
+[0;34m╚════════════════════════════════════════════════════════════╝[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m1. SYSTEMD SERVICES (Datenbanken & Container)[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+  containerd.service            loaded active running containerd container runtime
+  docker.service                loaded active running Docker Application Container Engine
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m2. NODE.JS PROZESSE[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;36mPID 2912: fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc[0m
+[0;36mPID 929074: /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=922934 --enable-crash-reporter=c1579d36-417f-47bb-833c-9e3286e2daa3,no_channel --user-data-dir=/home/y/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,5711941736741079522,5077232676767567885,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync --disable-features=CalculateNativeWinOcclusion,FontationsLinuxSystemFonts,ScreenAIOCREnabled,SpareRendererForSitePerProcess --variations-seed-version[0m
+[0;36mPID 929075: /opt/brave-bin/brave --type=utility --utility-sub-type=network.mojom.NetworkService --lang=de --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=297000 --enable-crash-reporter=b224e022-977d-4abd-8218-15364fe7a8f4, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,7990448020502819538,13004760072557679293,524288 --field-trial-handle=3,i,18323437761677937663,7499247140008814765,262144 --disable-features=EyeDropper --variations-seed-version=main@cf1e4701f7f52a0ffba94913856648d325d3ed68 --trace-process-track-uuid=3190709265550342496[0m
+[0;36mPID 929076: /proc/self/exe --type=utility --utility-sub-type=network.mojom.NetworkService --lang=de --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --enable-crash-reporter=cbad9abe-8e4f-4970-8225-312c336a9b94,no_channel --user-data-dir=/home/y/.config/obsidian --standard-schemes=app --secure-schemes=app --fetch-schemes=app --streaming-schemes=app --code-cache-schemes=app --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6075849816614600090,16589967477739482267,262144 --enable-features=PdfUseShowSaveFilePicker,SharedArrayBuffer --disable-features=LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708991934122588[0m
+[0;36mPID 929077: /opt/brave-bin/brave --type=utility --utility-sub-type=storage.mojom.StorageService --lang=de --service-sandbox-type=utility --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=297000 --enable-crash-reporter=b224e022-977d-4abd-8218-15364fe7a8f4, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,2921405986594643536,7511543905503896955,524288 --field-trial-handle=3,i,18323437761677937663,7499247140008814765,262144 --disable-features=EyeDropper --variations-seed-version=main@cf1e4701f7f52a0ffba94913856648d325d3ed68 --trace-process-track-uuid=3190709266487384345[0m
+[0;36mPID 929084: /opt/brave-bin/brave --type=gpu-process --ozone-platform=wayland --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=297000 --enable-crash-reporter=b224e022-977d-4abd-8218-15364fe7a8f4, --change-stack-guard-on-fork=enable --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --shared-files --metrics-shmem-handle=4,i,17746343370261737216,97060196147297333,262144 --field-trial-handle=3,i,18323437761677937663,7499247140008814765,262144 --disable-features=EyeDropper --variations-seed-version=main@cf1e4701f7f52a0ffba94913856648d325d3ed68 --trace-process-track-uuid=3190709267424426194[0m
+[0;36mPID 929643: /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=922934 --enable-crash-reporter=c1579d36-417f-47bb-833c-9e3286e2daa3,no_channel --user-data-dir=/home/y/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,5711941736741079522,5077232676767567885,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync --disable-features=CalculateNativeWinOcclusion,FontationsLinuxSystemFonts,ScreenAIOCREnabled,SpareRendererForSitePerProcess --variations-seed-version[0m
+[0;36mPID 929653: /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=922934 --enable-crash-reporter=c1579d36-417f-47bb-833c-9e3286e2daa3,no_channel --user-data-dir=/home/y/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,5711941736741079522,5077232676767567885,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync --disable-features=CalculateNativeWinOcclusion,FontationsLinuxSystemFonts,ScreenAIOCREnabled,SpareRendererForSitePerProcess --variations-seed-version[0m
+[0;36mPID 935083: /opt/brave-bin/brave --type=utility --utility-sub-type=audio.mojom.AudioService --lang=de --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=297000 --enable-crash-reporter=b224e022-977d-4abd-8218-15364fe7a8f4, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,1229536772371202991,7803808514815389223,524288 --field-trial-handle=3,i,18323437761677937663,7499247140008814765,262144 --disable-features=EyeDropper --variations-seed-version=main@cf1e4701f7f52a0ffba94913856648d325d3ed68 --trace-process-track-uuid=3190709272109635439[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m3. PYTHON/FLASK PROZESSE[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[1;33mPython läuft, aber keine Flask/Benning-Apps gefunden[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m4. DOCKER CONTAINER[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;31mKeine Docker Container laufen[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m5. PODMAN CONTAINER[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;31mKeine Podman Container laufen[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m6. AKTIVE PORTS MIT PROZESSEN[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;31mKeine relevanten Ports gefunden[0m
+
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;32m7. PORT-ZUSAMMENFASSUNG (Wichtige Ports)[0m
+[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;36m○[0m Port [0;36m3000[0m - Node.js (React-App) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m3001[0m - Node.js (Alternative) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m5000[0m - Flask (Python-App) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m3306[0m - MySQL (Standard) [0;32mFREI[0m
+[0;36m○[0m Port [0;36m3307[0m - MySQL (Flask-Container) [0;32mFREI[0m
+
+[0;34m╚════════════════════════════════════════════════════════════╝[0m
+
+[0;36mHinweis: Benning-relevante Prozesse sind [0;31mROT[0;36m markiert[0m

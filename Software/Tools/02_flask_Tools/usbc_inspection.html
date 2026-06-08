@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USB-C Kabel-Prüfung - {{ device.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .checklist-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(197, 151, 151, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .checklist-section h3 {
+            color: #c59797;
+            margin-bottom: 16px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .checklist-item:hover {
+            background: rgba(197, 151, 151, 0.1);
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #c59797;
+        }
+        
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .checklist-item.checked label {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        
+        .pin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .pin-input {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .pin-input label {
+            display: block;
+            color: #c59797;
+            font-size: 0.9em;
+            margin-bottom: 4px;
+        }
+        
+        .pin-input input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 151, 151, 0.3);
+            border-radius: 6px;
+            padding: 8px;
+            color: white;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .pin-input.passed {
+            border-left: 3px solid #4ade80;
+        }
+        
+        .pin-input.failed {
+            border-left: 3px solid #ef4444;
+        }
+        
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .protocol-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(197, 151, 151, 0.2);
+        }
+        
+        .protocol-card.supported {
+            border-left: 3px solid #4ade80;
+        }
+        
+        .photo-upload-area {
+            border: 2px dashed rgba(197, 151, 151, 0.3);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .photo-upload-area:hover {
+            border-color: #c59797;
+            background: rgba(197, 151, 151, 0.05);
+        }
+        
+        .photo-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .photo-preview img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(197, 151, 151, 0.3);
+        }
+        
+        .result-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .result-badge.passed {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+        
+        .result-badge.failed {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .result-badge.conditional {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔌 USB-C Kabel-Prüfung</h1>
+            <p>{{ device.name }} ({{ device.id }})</p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" id="usbcForm">
+            <!-- 1. Vorbereitung -->
+            <div class="checklist-section">
+                <h3>📋 1. Vorbereitung</h3>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="device_functional" name="device_functional" value="1">
+                    <label for="device_functional">Gerät funktionsfähig</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="battery_checked" name="battery_checked" value="1">
+                    <label for="battery_checked">Batterie / Netzteil prüfen</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="cable_visual_ok" name="cable_visual_ok" value="1">
+                    <label for="cable_visual_ok">Kabel visuell prüfen</label>
+                </div>
+                
+                <div style="margin-top: 16px;">
+                    <label for="cable_id" style="color: #c59797; display: block; margin-bottom: 8px;">
+                        Kabel-ID / Etikette:
+                    </label>
+                    <input type="text" id="cable_id" name="cable_id" value="{{ device.id }}" 
+                           style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.05); 
+                                  border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                  padding: 10px; color: white;">
+                </div>
+            </div>
+
+            <!-- 2. Schnelltest -->
+            <div class="checklist-section">
+                <h3>⚡ 2. Schnelltest</h3>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="cable_connected" name="cable_connected" value="1">
+                    <label for="cable_connected">Kabel anschließen</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="basic_functions_ok" name="basic_functions_ok" value="1">
+                    <label for="basic_functions_ok">Basic Functions prüfen</label>
+                </div>
+                
+                <div style="margin-top: 16px;">
+                    <label style="color: #c59797; display: block; margin-bottom: 8px;">
+                        Erkannte Protokolle:
+                    </label>
+                    <div class="protocol-grid">
+                        <div class="protocol-card">
+                            <input type="checkbox" id="proto_usb2" name="protocols" value="USB 2.0">
+                            <label for="proto_usb2">USB 2.0</label>
+                        </div>
+                        <div class="protocol-card">
+                            <input type="checkbox" id="proto_usb32" name="protocols" value="USB 3.2 Gen 2">
+                            <label for="proto_usb32">USB 3.2 Gen 2</label>
+                        </div>
+                        <div class="protocol-card">
+                            <input type="checkbox" id="proto_dp" name="protocols" value="DisplayPort Alt Mode">
+                            <label for="proto_dp">DisplayPort Alt Mode</label>
+                        </div>
+                        <div class="protocol-card">
+                            <input type="checkbox" id="proto_pd" name="protocols" value="Power Delivery 3.0">
+                            <label for="proto_pd">Power Delivery 3.0</label>
+                        </div>
+                        <div class="protocol-card">
+                            <input type="checkbox" id="proto_tb4" name="protocols" value="Thunderbolt 4">
+                            <label for="proto_tb4">Thunderbolt 4</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Detailprüfung -->
+            <div class="checklist-section">
+                <h3>🔬 3. Detailprüfung</h3>
+                
+                <!-- Foto-Upload -->
+                <div style="margin-bottom: 24px;">
+                    <label style="color: #c59797; display: block; margin-bottom: 8px;">
+                        📸 Type-C Pinout fotografieren:
+                    </label>
+                    <div class="photo-upload-area" onclick="document.getElementById('pinout_photo').click()">
+                        <input type="file" id="pinout_photo" name="pinout_photo" accept="image/*" 
+                               style="display: none;" onchange="previewPhoto(this)">
+                        <div id="upload-text">
+                            <p style="font-size: 3em; margin: 0;">📷</p>
+                            <p>Klicken zum Hochladen oder Drag & Drop</p>
+                            <p style="font-size: 0.9em; opacity: 0.7;">JPG, PNG, max. 10MB</p>
+                        </div>
+                        <div id="photo-preview" class="photo-preview" style="display: none;"></div>
+                    </div>
+                </div>
+                
+                <!-- Widerstandsmessungen -->
+                <div class="checklist-item">
+                    <input type="checkbox" id="resistance_test_done" name="resistance_test_done" value="1">
+                    <label for="resistance_test_done">Resistance Test durchführen</label>
+                </div>
+                
+                <div id="resistance-inputs" style="display: none; margin-top: 16px;">
+                    <label style="color: #c59797; display: block; margin-bottom: 8px;">
+                        Pin-Widerstände (Ω):
+                    </label>
+                    <div class="pin-grid">
+                        <div class="pin-input">
+                            <label>VBUS (0.0-0.5Ω)</label>
+                            <input type="number" step="0.001" name="pin_vbus" placeholder="0.150">
+                        </div>
+                        <div class="pin-input">
+                            <label>GND (0.0-0.3Ω)</label>
+                            <input type="number" step="0.001" name="pin_gnd" placeholder="0.080">
+                        </div>
+                        <div class="pin-input">
+                            <label>CC1 (0.8-1.2Ω)</label>
+                            <input type="number" step="0.001" name="pin_cc1" placeholder="1.000">
+                        </div>
+                        <div class="pin-input">
+                            <label>CC2 (0.8-1.2Ω)</label>
+                            <input type="number" step="0.001" name="pin_cc2" placeholder="1.050">
+                        </div>
+                        <div class="pin-input">
+                            <label>TX1+ (0.0-0.3Ω)</label>
+                            <input type="number" step="0.001" name="pin_tx1p" placeholder="0.120">
+                        </div>
+                        <div class="pin-input">
+                            <label>TX1- (0.0-0.3Ω)</label>
+                            <input type="number" step="0.001" name="pin_tx1n" placeholder="0.110">
+                        </div>
+                        <div class="pin-input">
+                            <label>RX1+ (0.0-0.3Ω)</label>
+                            <input type="number" step="0.001" name="pin_rx1p" placeholder="0.130">
+                        </div>
+                        <div class="pin-input">
+                            <label>RX1- (0.0-0.3Ω)</label>
+                            <input type="number" step="0.001" name="pin_rx1n" placeholder="0.120">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- eMarker -->
+                <div class="checklist-item">
+                    <input type="checkbox" id="emarker_present" name="emarker_present" value="1">
+                    <label for="emarker_present">eMarker prüfen (falls vorhanden)</label>
+                </div>
+                
+                <div id="emarker-inputs" style="display: none; margin-top: 16px;">
+                    <label style="color: #c59797; display: block; margin-bottom: 8px;">
+                        eMarker Daten:
+                    </label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                        <div>
+                            <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">Vendor:</label>
+                            <input type="text" name="emarker_vendor" placeholder="z.B. Intel" 
+                                   style="width: 100%; background: rgba(255, 255, 255, 0.05); 
+                                          border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                          padding: 8px; color: white;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">Product:</label>
+                            <input type="text" name="emarker_product" placeholder="z.B. Thunderbolt 4 Cable" 
+                                   style="width: 100%; background: rgba(255, 255, 255, 0.05); 
+                                          border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                          padding: 8px; color: white;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">Max. Strom:</label>
+                            <input type="text" name="emarker_current" placeholder="z.B. 5A" 
+                                   style="width: 100%; background: rgba(255, 255, 255, 0.05); 
+                                          border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                          padding: 8px; color: white;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">Max. Spannung:</label>
+                            <input type="text" name="emarker_voltage" placeholder="z.B. 20V" 
+                                   style="width: 100%; background: rgba(255, 255, 255, 0.05); 
+                                          border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                          padding: 8px; color: white;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Bewertung & Dokumentation -->
+            <div class="checklist-section">
+                <h3>✅ 4. Bewertung & Dokumentation</h3>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="color: #c59797; display: block; margin-bottom: 8px;">
+                        Prüfergebnis:
+                    </label>
+                    <select name="test_result" required
+                            style="width: 100%; max-width: 300px; background: rgba(255, 255, 255, 0.05); 
+                                   border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                   padding: 10px; color: white;">
+                        <option value="passed">✅ Bestanden</option>
+                        <option value="conditional">⚠️ Bedingt bestanden</option>
+                        <option value="failed">❌ Nicht bestanden</option>
+                    </select>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="color: #c59797; display: block; margin-bottom: 8px;">
+                        Prüfer:
+                    </label>
+                    <input type="text" name="inspector_name" required
+                           style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.05); 
+                                  border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                  padding: 10px; color: white;">
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="color: #c59797; display: block; margin-bottom: 8px;">
+                        Notizen:
+                    </label>
+                    <textarea name="notes" rows="4"
+                              style="width: 100%; background: rgba(255, 255, 255, 0.05); 
+                                     border: 1px solid rgba(197, 151, 151, 0.3); border-radius: 6px; 
+                                     padding: 10px; color: white; resize: vertical;"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div style="display: flex; gap: 16px; margin-top: 32px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">
+                    💾 Prüfung speichern
+                </button>
+                <a href="{{ url_for('device_detail', device_id=device.id) }}" class="btn" style="flex: 1; text-align: center;">
+                    ❌ Abbrechen
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Checkbox-Interaktivität
+        document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                this.closest('.checklist-item').classList.toggle('checked', this.checked);
+            });
+        });
+
+        // Resistance Test Toggle
+        document.getElementById('resistance_test_done').addEventListener('change', function() {
+            document.getElementById('resistance-inputs').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // eMarker Toggle
+        document.getElementById('emarker_present').addEventListener('change', function() {
+            document.getElementById('emarker-inputs').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Foto-Preview
+        function previewPhoto(input) {
+            const preview = document.getElementById('photo-preview');
+            const uploadText = document.getElementById('upload-text');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Pinout Preview">`;
+                    preview.style.display = 'grid';
+                    uploadText.style.display = 'none';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Pin-Validierung
+        document.querySelectorAll('.pin-input input').forEach(input => {
+            input.addEventListener('input', function() {
+                const value = parseFloat(this.value);
+                const label = this.previousElementSibling.textContent;
+                const match = label.match(/\(([0-9.]+)-([0-9.]+)/);
+                
+                if (match && !isNaN(value)) {
+                    const min = parseFloat(match[1]);
+                    const max = parseFloat(match[2]);
+                    const parent = this.closest('.pin-input');
+                    
+                    parent.classList.remove('passed', 'failed');
+                    if (value >= min && value <= max) {
+                        parent.classList.add('passed');
+                    } else {
+                        parent.classList.add('failed');
+                    }
+                }
+            });
+        });
+
+        // Protokoll-Karten Toggle
+        document.querySelectorAll('.protocol-card input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                this.closest('.protocol-card').classList.toggle('supported', this.checked);
+            });
+        });
+
+        // Form-Validierung
+        document.getElementById('usbcForm').addEventListener('submit', function(e) {
+            const allChecked = document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').length;
+            if (allChecked < 3) {
+                if (!confirm('Nicht alle Prüfschritte wurden durchgeführt. Trotzdem speichern?')) {
+                    e.preventDefault();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+✓ QR-Code (SVG) generiert für BMW-00009
+✓ QR-Code (SVG) generiert für BMW-00008
+✓ QR-Code (SVG) generiert für BMW-00007
+✓ QR-Code (SVG) generiert für Siemens-00009
+✓ QR-Code (SVG) generiert für Siemens-00008
+✓ QR-Code (SVG) generiert für Siemens-00007
+✓ QR-Code (SVG) generiert für Parloa-00011
+✓ QR-Code (SVG) generiert für Parloa-00010
+✓ QR-Code (SVG) generiert für Parloa-00009
+✓ QR-Code (SVG) generiert für Audi-00002
+✓ QR-Code (SVG) generiert für BMW-00006
+✓ QR-Code (SVG) generiert für BMW-00005
+✓ QR-Code (SVG) generiert für BMW-00004
+✓ QR-Code (SVG) generiert für Siemens-00006
+✓ QR-Code (SVG) generiert für Siemens-00005
+✓ QR-Code (SVG) generiert für Siemens-00004
+✓ QR-Code (SVG) generiert für Parloa-00008
+✓ QR-Code (SVG) generiert für Parloa-00007
+✓ QR-Code (SVG) generiert für Parloa-00006
+✓ QR-Code (SVG) generiert für Audi-00001
+✓ QR-Code (SVG) generiert für BMW-00003
+✓ QR-Code (SVG) generiert für BMW-00002
+✓ QR-Code (SVG) generiert für BMW-00001
+✓ QR-Code (SVG) generiert für Siemens-00003
+✓ QR-Code (SVG) generiert für Siemens-00002
+✓ QR-Code (SVG) generiert für Siemens-00001
+✓ QR-Code (SVG) generiert für Parloa-00005
+✓ QR-Code (SVG) generiert für Parloa-00004
+✓ QR-Code (SVG) generiert für Parloa-00003
+✓ QR-Code (SVG) generiert für Benning-00013
+✓ QR-Code (SVG) generiert für Benning-00012
+✓ QR-Code (SVG) generiert für Benning-00011
+✓ QR-Code (SVG) generiert für Benning-00010
+✓ QR-Code (SVG) generiert für Kunde B-00001
+✓ QR-Code (SVG) generiert für Kunde A-00001
+✓ QR-Code (SVG) generiert für Benning-00009
+✓ QR-Code (SVG) generiert für Benning-00008
+✓ QR-Code (SVG) generiert für Benning-00007
+✓ QR-Code (SVG) generiert für Benning-00006
+✓ QR-Code (SVG) generiert für Benning-00005
+✓ QR-Code (SVG) generiert für Benning-00004
+✓ QR-Code (SVG) generiert für Benning-00003
+✓ QR-Code (SVG) generiert für Benning-00002
+✓ QR-Code (SVG) generiert für Benning-00001
+✓ QR-Code (SVG) generiert für Parloa-00001
+10.89.0.10 - - [30/Jan/2026:16:40:53 +0000] "GET /devices HTTP/1.1" 200 695392 "http://localhost:5000/devices" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+10.89.0.10 - - [30/Jan/2026:16:40:53 +0000] "GET /static/css/all.min.css HTTP/1.1" 304 0 "http://localhost:5000/devices" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+10.89.0.10 - - [30/Jan/2026:16:40:53 +0000] "GET /static/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0 "http://localhost:5000/static/css/all.min.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+10.89.0.10 - - [30/Jan/2026:16:41:03 +0000] "GET /static/css/all.min.css HTTP/1.1" 304 0 "http://localhost:5000/devices" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+10.89.0.10 - - [30/Jan/2026:16:41:03 +0000] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 207 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+✓ QR-Code (SVG) generiert für Audi-00003
+✓ QR-Code (SVG) generiert für BMW-00009
+✓ QR-Code (SVG) generiert für BMW-00008
+✓ QR-Code (SVG) generiert für BMW-00007
+✓ QR-Code (SVG) generiert für Siemens-00009
+✓ QR-Code (SVG) generiert für Siemens-00008
+✓ QR-Code (SVG) generiert für Siemens-00007
+✓ QR-Code (SVG) generiert für Parloa-00011
+✓ QR-Code (SVG) generiert für Parloa-00010
+✓ QR-Code (SVG) generiert für Parloa-00009
+✓ QR-Code (SVG) generiert für Audi-00002
+✓ QR-Code (SVG) generiert für BMW-00006
+✓ QR-Code (SVG) generiert für BMW-00005
+✓ QR-Code (SVG) generiert für BMW-00004
+✓ QR-Code (SVG) generiert für Siemens-00006
+✓ QR-Code (SVG) generiert für Siemens-00005
+✓ QR-Code (SVG) generiert für Siemens-00004
+✓ QR-Code (SVG) generiert für Parloa-00008
+✓ QR-Code (SVG) generiert für Parloa-00007
+✓ QR-Code (SVG) generiert für Parloa-00006
+✓ QR-Code (SVG) generiert für Audi-00001
+✓ QR-Code (SVG) generiert für BMW-00003
+✓ QR-Code (SVG) generiert für BMW-00002
+✓ QR-Code (SVG) generiert für BMW-00001
+✓ QR-Code (SVG) generiert für Siemens-00003
+✓ QR-Code (SVG) generiert für Siemens-00002
+✓ QR-Code (SVG) generiert für Siemens-00001
+✓ QR-Code (SVG) generiert für Parloa-00005
+✓ QR-Code (SVG) generiert für Parloa-00004
+✓ QR-Code (SVG) generiert für Parloa-00003
+✓ QR-Code (SVG) generiert für Benning-00013
+✓ QR-Code (SVG) generiert für Benning-00012
+✓ QR-Code (SVG) generiert für Benning-00011
+✓ QR-Code (SVG) generiert für Benning-00010
+✓ QR-Code (SVG) generiert für Kunde B-00001
+✓ QR-Code (SVG) generiert für Kunde A-00001
+✓ QR-Code (SVG) generiert für Benning-00009
+✓ QR-Code (SVG) generiert für Benning-00008
+✓ QR-Code (SVG) generiert für Benning-00007
+✓ QR-Code (SVG) generiert für Benning-00006
+✓ QR-Code (SVG) generiert für Benning-00005
+✓ QR-Code (SVG) generiert für Benning-00004
+✓ QR-Code (SVG) generiert für Benning-00003
+✓ QR-Code (SVG) generiert für Benning-00002
+✓ QR-Code (SVG) generiert für Benning-00001
+✓ QR-Code (SVG) generiert für Parloa-00001
+10.89.0.11 - - [30/Jan/2026:16:43:34 +0000] "GET /devices HTTP/1.1" 200 695392 "http://localhost:5000/quick-add" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+10.89.0.11 - - [30/Jan/2026:16:43:34 +0000] "GET /static/css/all.min.css HTTP/1.1" 304 0 "http://localhost:5000/devices" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+{"timestamp": "2026-01-30T16:43:36.090367", "level": "DB_OPERATION", "operation": "SELECT", "table": "devices", "result": "success", "duration_ms": 9.24}
+10.89.0.11 - - [30/Jan/2026:16:43:36 +0000] "GET /api/devices/print HTTP/1.1" 200 0 "http://localhost:5000/devices" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+✓ QR-Code (SVG) generiert für Parloa-00014
+✓ QR-Code (SVG) generiert für Parloa-00013
+✓ QR-Code (SVG) generiert für Parloa-00012
+✓ QR-Code (SVG) generiert für Audi-00003
+✓ QR-Code (SVG) generiert für BMW-00009
+✓ QR-Code (SVG) generiert für BMW-00008
+✓ QR-Code (SVG) generiert für BMW-00007
+✓ QR-Code (SVG) generiert für Siemens-00009
+✓ QR-Code (SVG) generiert für Siemens-00008
+✓ QR-Code (SVG) generiert für Siemens-00007
+✓ QR-Code (SVG) generiert für Parloa-00011
+✓ QR-Code (SVG) generiert für Parloa-00010
+✓ QR-Code (SVG) generiert für Parloa-00009
+✓ QR-Code (SVG) generiert für Audi-00002
+✓ QR-Code (SVG) generiert für BMW-00006
+✓ QR-Code (SVG) generiert für BMW-00005
+✓ QR-Code (SVG) generiert für BMW-00004
+✓ QR-Code (SVG) generiert für Siemens-00006
+✓ QR-Code (SVG) generiert für Siemens-00005
+✓ QR-Code (SVG) generiert für Siemens-00004
+✓ QR-Code (SVG) generiert für Parloa-00008
+✓ QR-Code (SVG) generiert für Parloa-00007
+✓ QR-Code (SVG) generiert für Parloa-00006
+✓ QR-Code (SVG) generiert für Audi-00001
+✓ QR-Code (SVG) generiert für BMW-00003
+✓ QR-Code (SVG) generiert für BMW-00002
+✓ QR-Code (SVG) generiert für BMW-00001
+✓ QR-Code (SVG) generiert für Siemens-00003
+✓ QR-Code (SVG) generiert für Siemens-00002
+✓ QR-Code (SVG) generiert für Siemens-00001
+✓ QR-Code (SVG) generiert für Parloa-00005
+✓ QR-Code (SVG) generiert für Parloa-00004
+✓ QR-Code (SVG) generiert für Parloa-00003
+✓ QR-Code (SVG) generiert für Benning-00013
+✓ QR-Code (SVG) generiert für Benning-00012
+✓ QR-Code (SVG) generiert für Benning-00011
+✓ QR-Code (SVG) generiert für Benning-00010
+✓ QR-Code (SVG) generiert für Kunde B-00001
+✓ QR-Code (SVG) generiert für Kunde A-00001
+✓ QR-Code (SVG) generiert für Benning-00009
+✓ QR-Code (SVG) generiert für Benning-00008
+✓ QR-Code (SVG) generiert für Benning-00007
+✓ QR-Code (SVG) generiert für Benning-00006
+✓ QR-Code (SVG) generiert für Benning-00005
+✓ QR-Code (SVG) generiert für Benning-00004
+✓ QR-Code (SVG) generiert für Benning-00003
+✓ QR-Code (SVG) generiert für Benning-00002
+✓ QR-Code (SVG) generiert für Benning-00001
+✓ QR-Code (SVG) generiert für Parloa-00001
+10.89.0.21 - - [30/Jan/2026:17:39:57 +0000] "GET /api/devices/print HTTP/1.1" 200 1026860 "http://localhost:5000/devices" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"

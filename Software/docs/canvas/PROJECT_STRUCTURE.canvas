@@ -1,0 +1,320 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "text": "🏗️ BENNING DEVICE MANAGER\nHexagonal Architecture",
+      "x": -100,
+      "y": -500,
+      "width": 300,
+      "height": 120,
+      "color": "#FF6B6B"
+    },
+    {
+      "id": "core_layer",
+      "type": "text",
+      "text": "🎯 CORE DOMAIN LAYER",
+      "x": -800,
+      "y": -350,
+      "width": 200,
+      "height": 80,
+      "color": "#4ECDC4"
+    },
+    {
+      "id": "domain_models",
+      "type": "text",
+      "text": "📦 DOMAIN MODELS\n\n✓ device.py\n✓ inspection.py\n✓ usbc_inspection.py\n\nBusiness Logic\n& Entities",
+      "x": -1000,
+      "y": -150,
+      "width": 240,
+      "height": 200,
+      "color": "#95E1D3"
+    },
+    {
+      "id": "ports",
+      "type": "text",
+      "text": "🔌 PORTS\n(Interfaces)\n\n✓ device_repository\n✓ file_storage\n✓ qr_generator",
+      "x": -650,
+      "y": -150,
+      "width": 220,
+      "height": 180,
+      "color": "#95E1D3"
+    },
+    {
+      "id": "usecases",
+      "type": "text",
+      "text": "⚙️ USE CASES\n\n✓ ListDevicesUseCase\n✓ GetDeviceUseCase\n✓ CreateDeviceUseCase\n✓ UpdateDeviceUseCase\n✓ DeleteDeviceUseCase",
+      "x": -800,
+      "y": 100,
+      "width": 280,
+      "height": 220,
+      "color": "#F38181"
+    },
+    {
+      "id": "adapter_layer",
+      "type": "text",
+      "text": "🔌 ADAPTER LAYER",
+      "x": 600,
+      "y": -350,
+      "width": 200,
+      "height": 80,
+      "color": "#AA96DA"
+    },
+    {
+      "id": "web_routes",
+      "type": "text",
+      "text": "🌐 WEB ROUTES\n\n✓ device_routes.py\n✓ device_routes_improved.py\n\nEndpoints:\n• GET /api/devices\n• GET /api/devices/<id>\n• POST /api/devices\n• PUT /api/devices/<id>\n• DELETE /api/devices/<id>\n• GET /api/devices/next-id\n• GET /api/devices/health",
+      "x": 850,
+      "y": -100,
+      "width": 300,
+      "height": 280,
+      "color": "#FCBAD3"
+    },
+    {
+      "id": "persistence",
+      "type": "text",
+      "text": "💾 PERSISTENCE\n\n✓ mysql_device_repository.py\n\nMethods:\n• create(device)\n• get_by_id(id)\n• get_by_customer_device_id(id)\n• get_all()\n• update(device)\n• delete(id)\n• get_next_customer_device_id()",
+      "x": 850,
+      "y": 250,
+      "width": 300,
+      "height": 280,
+      "color": "#FCBAD3"
+    },
+    {
+      "id": "services",
+      "type": "text",
+      "text": "🛠️ SERVICES\n\n✓ logger_service.py\n✓ health_check_service.py\n✓ qr_code_generator.py\n\nUtilities für Logging,\nHealth Checks und\nQR-Code Generierung",
+      "x": 850,
+      "y": 600,
+      "width": 300,
+      "height": 200,
+      "color": "#FCBAD3"
+    },
+    {
+      "id": "dto",
+      "type": "text",
+      "text": "📋 DTOs (NEW)\n\n✓ device_dto.py\n\n• CreateDeviceRequest\n• UpdateDeviceRequest\n• DeviceResponse\n• Validierung\n• Sanitization",
+      "x": 1250,
+      "y": -100,
+      "width": 280,
+      "height": 220,
+      "color": "#A8D8EA"
+    },
+    {
+      "id": "config",
+      "type": "text",
+      "text": "⚙️ CONFIGURATION\n\n✓ settings.py\n✓ dependencies.py\n\nDependency Injection\nContainer & Config",
+      "x": -400,
+      "y": 400,
+      "width": 280,
+      "height": 160,
+      "color": "#FFD3B6"
+    },
+    {
+      "id": "database",
+      "type": "text",
+      "text": "🗄️ DATABASE\n\nMySQL\n\n✓ schema.sql\n\nTables:\n• devices\n• inspections\n• users\n• audit_log",
+      "x": 1250,
+      "y": 250,
+      "width": 280,
+      "height": 220,
+      "color": "#FFAAA5"
+    },
+    {
+      "id": "tests",
+      "type": "text",
+      "text": "✅ TESTS (NEW)\n\n✓ test_device_routes_comprehensive.py\n✓ test_device_usecases.py\n✓ test_mysql_device_repository.py\n✓ test_device_domain.py\n\n31 Tests | 96% Coverage",
+      "x": 0,
+      "y": 500,
+      "width": 320,
+      "height": 220,
+      "color": "#A8E6CF"
+    },
+    {
+      "id": "frontend",
+      "type": "text",
+      "text": "🎨 FRONTEND\n\n• templates/\n  - index.html\n  - devices.html\n  - device_detail.html\n  - quick_add.html\n\n• static/css/",
+      "x": -600,
+      "y": 500,
+      "width": 280,
+      "height": 200,
+      "color": "#FFD3B6"
+    },
+    {
+      "id": "issues_fixed",
+      "type": "text",
+      "text": "✅ ISSUES FIXED\n\n1. Input-Validierung ✓\n2. Datums-Parsing ✓\n3. Format-Validierung ✓\n4. String-Sanitization ✓\n5. NULL-Validierung ✓\n6. Automatisierte Tests ✓\n7. Projektstruktur ✓",
+      "x": 0,
+      "y": 800,
+      "width": 320,
+      "height": 220,
+      "color": "#A8E6CF"
+    },
+    {
+      "id": "flow",
+      "type": "text",
+      "text": "📊 REQUEST FLOW\n\n1. Client → Flask Route\n2. DTO Validation\n3. Domain Object\n4. Use Case Execution\n5. Repository Operation\n6. Database Query\n7. Response Mapping\n8. JSON Response",
+      "x": 400,
+      "y": 800,
+      "width": 300,
+      "height": 220,
+      "color": "#FFE5B4"
+    },
+    {
+      "id": "improvements",
+      "type": "text",
+      "text": "🚀 IMPROVEMENTS\n\n✓ 96% Code Coverage\n✓ Input Validation\n✓ Error Handling\n✓ Date Parsing\n✓ String Sanitization\n✓ Format Validation\n✓ Health Checks\n✓ Logging",
+      "x": -300,
+      "y": 800,
+      "width": 280,
+      "height": 220,
+      "color": "#FFE5B4"
+    }
+  ],
+  "edges": [
+    {
+      "id": "title-core",
+      "fromNode": "title",
+      "fromSide": "left",
+      "toNode": "core_layer",
+      "toSide": "top",
+      "color": "#FF6B6B"
+    },
+    {
+      "id": "title-adapter",
+      "fromNode": "title",
+      "fromSide": "right",
+      "toNode": "adapter_layer",
+      "toSide": "top",
+      "color": "#FF6B6B"
+    },
+    {
+      "id": "core-domain",
+      "fromNode": "core_layer",
+      "fromSide": "bottom",
+      "toNode": "domain_models",
+      "toSide": "top",
+      "color": "#4ECDC4"
+    },
+    {
+      "id": "core-ports",
+      "fromNode": "core_layer",
+      "fromSide": "bottom",
+      "toNode": "ports",
+      "toSide": "top",
+      "color": "#4ECDC4"
+    },
+    {
+      "id": "core-usecases",
+      "fromNode": "core_layer",
+      "fromSide": "bottom",
+      "toNode": "usecases",
+      "toSide": "top",
+      "color": "#4ECDC4"
+    },
+    {
+      "id": "adapter-web",
+      "fromNode": "adapter_layer",
+      "fromSide": "bottom",
+      "toNode": "web_routes",
+      "toSide": "top",
+      "color": "#AA96DA"
+    },
+    {
+      "id": "adapter-persistence",
+      "fromNode": "adapter_layer",
+      "fromSide": "bottom",
+      "toNode": "persistence",
+      "toSide": "top",
+      "color": "#AA96DA"
+    },
+    {
+      "id": "adapter-services",
+      "fromNode": "adapter_layer",
+      "fromSide": "bottom",
+      "toNode": "services",
+      "toSide": "top",
+      "color": "#AA96DA"
+    },
+    {
+      "id": "web-dto",
+      "fromNode": "web_routes",
+      "fromSide": "right",
+      "toNode": "dto",
+      "toSide": "left",
+      "color": "#FCBAD3"
+    },
+    {
+      "id": "web-usecases",
+      "fromNode": "web_routes",
+      "fromSide": "left",
+      "toNode": "usecases",
+      "toSide": "right",
+      "color": "#FCBAD3"
+    },
+    {
+      "id": "persistence-database",
+      "fromNode": "persistence",
+      "fromSide": "right",
+      "toNode": "database",
+      "toSide": "left",
+      "color": "#FCBAD3"
+    },
+    {
+      "id": "usecases-persistence",
+      "fromNode": "usecases",
+      "fromSide": "right",
+      "toNode": "persistence",
+      "toSide": "left",
+      "color": "#F38181"
+    },
+    {
+      "id": "config-usecases",
+      "fromNode": "config",
+      "fromSide": "top",
+      "toNode": "usecases",
+      "toSide": "bottom",
+      "color": "#FFD3B6"
+    },
+    {
+      "id": "frontend-web",
+      "fromNode": "frontend",
+      "fromSide": "right",
+      "toNode": "web_routes",
+      "toSide": "left",
+      "color": "#FFD3B6"
+    },
+    {
+      "id": "tests-web",
+      "fromNode": "tests",
+      "fromSide": "top",
+      "toNode": "web_routes",
+      "toSide": "bottom",
+      "color": "#A8E6CF"
+    },
+    {
+      "id": "tests-usecases",
+      "fromNode": "tests",
+      "fromSide": "left",
+      "toNode": "usecases",
+      "toSide": "bottom",
+      "color": "#A8E6CF"
+    },
+    {
+      "id": "issues-improvements",
+      "fromNode": "issues_fixed",
+      "fromSide": "right",
+      "toNode": "improvements",
+      "toSide": "left",
+      "color": "#A8E6CF"
+    },
+    {
+      "id": "flow-web",
+      "fromNode": "flow",
+      "fromSide": "left",
+      "toNode": "web_routes",
+      "toSide": "bottom",
+      "color": "#FFE5B4"
+    }
+  ]
+}

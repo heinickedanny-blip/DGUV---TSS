@@ -1,0 +1,208 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "type": "text",
+      "text": "# 🗺️ BENNING DEVICE MANAGER\n## Routes & Mapping Übersicht\n\n**Hexagonal Architecture**\nPodman Container | MySQL | Flask",
+      "x": -400,
+      "y": -300,
+      "width": 350,
+      "height": 200,
+      "color": "1"
+    },
+    {
+      "id": "2",
+      "type": "text",
+      "text": "## 1️⃣ TEMPLATE\n**HTML Form Input**\n\n- quick_add.html\n- device_detail.html\n- devices.html\n\n```html\n<input name=\"customer\" />\n<input name=\"name\" />\n```",
+      "x": -700,
+      "y": 0,
+      "width": 280,
+      "height": 250,
+      "color": "2"
+    },
+    {
+      "id": "3",
+      "type": "text",
+      "text": "## 2️⃣ ROUTES\n**API Endpoints**\n\ndevice_routes.py\n\n```python\nPOST /api/devices\ndata = request.json\ndata.get('customer')\ndata.get('name')\n```",
+      "x": -350,
+      "y": 0,
+      "width": 280,
+      "height": 250,
+      "color": "3"
+    },
+    {
+      "id": "4",
+      "type": "text",
+      "text": "## 3️⃣ DOMAIN\n**Data Model**\n\nsrc/core/domain/device.py\n\n```python\n@dataclass\nclass Device:\n  customer: Optional[str]\n  name: str\n  device_id: Optional[str]\n```",
+      "x": 0,
+      "y": 0,
+      "width": 280,
+      "height": 250,
+      "color": "4"
+    },
+    {
+      "id": "5",
+      "type": "text",
+      "text": "## 4️⃣ USE CASES\n**Business Logic**\n\ndevice_usecases.py\n\n```python\nCreateDeviceUseCase\n  - QR-Code generieren\n  - device_id generieren\n```",
+      "x": 350,
+      "y": 0,
+      "width": 280,
+      "height": 250,
+      "color": "5"
+    },
+    {
+      "id": "6",
+      "type": "text",
+      "text": "## 5️⃣ REPOSITORY\n**Datenbank Zugriff**\n\nmysql_device_repository.py\n\n```python\nINSERT INTO devices\n  (customer, name, ...)\nVALUES (%s, %s, ...)\n```",
+      "x": 700,
+      "y": 0,
+      "width": 280,
+      "height": 250,
+      "color": "6"
+    },
+    {
+      "id": "7",
+      "type": "text",
+      "text": "## 6️⃣ DATABASE\n**MySQL Persistierung**\n\nbenning_device_manager\n\n```sql\nCREATE TABLE devices (\n  customer VARCHAR(255),\n  name VARCHAR(255),\n  ...\n)\n```",
+      "x": 1050,
+      "y": 0,
+      "width": 280,
+      "height": 250,
+      "color": "1"
+    },
+    {
+      "id": "8",
+      "type": "text",
+      "text": "## ✅ FELD-MAPPING\n\n| Feld | Template | Routes | Domain | Repository | DB |\n|------|----------|--------|--------|------------|----|\n| customer | name=\"customer\" | data.get() | Optional[str] | device.customer | VARCHAR |\n| name | name=\"name\" | data.get() | str | device.name | VARCHAR |\n| type | name=\"type\" | data.get() | Optional[str] | device.type | VARCHAR |\n| location | name=\"location\" | data.get() | Optional[str] | device.location | VARCHAR |\n| serial_number | name=\"serial_number\" | data.get() | Optional[str] | device.serial_number | VARCHAR |\n| manufacturer | name=\"manufacturer\" | data.get() | Optional[str] | device.manufacturer | VARCHAR |\n| model | name=\"model\" | data.get() | Optional[str] | device.model | VARCHAR |\n| purchase_date | name=\"purchase_date\" | data.get() | Optional[str] | device.purchase_date | DATE |\n| status | name=\"status\" | data.get('status', 'active') | str = 'active' | device.status | ENUM |\n| notes | name=\"notes\" | data.get() | Optional[str] | device.notes | TEXT |\n| device_id | - (auto) | - | Optional[str] | _generate_device_id() | VARCHAR |\n| qr_code | - (auto) | - | Optional[bytes] | QRCodeGenerator | LONGBLOB |\n| created_at | - (auto) | - | Optional[datetime] | row.get() | TIMESTAMP |\n| updated_at | - (auto) | - | Optional[datetime] | row.get() | TIMESTAMP |",
+      "x": -350,
+      "y": 400,
+      "width": 1000,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "9",
+      "type": "text",
+      "text": "## 🔄 ÄNDERUNGS-WORKFLOW\n\n**Wenn du ein neues Feld hinzufügst:**\n\n1. **Datenbank** - `ALTER TABLE devices ADD COLUMN ...`\n2. **Domain** - Feld in `device.py` definieren\n3. **Routes** - `data.get('fieldname')` hinzufügen\n4. **Repository** - INSERT/UPDATE Query anpassen\n5. **Repository** - `_row_to_device()` anpassen\n6. **Template** - Input-Feld hinzufügen (optional)\n7. **Container** - `podman restart benning-flask`\n8. **Test** - Mit curl testen",
+      "x": -350,
+      "y": 950,
+      "width": 1000,
+      "height": 250,
+      "color": "2"
+    },
+    {
+      "id": "10",
+      "type": "text",
+      "text": "## 📁 DATEI-ABHÄNGIGKEITEN\n\n```\nTemplate (HTML)\n  ↓\nRoutes (device_routes.py)\n  ↓\nDomain (device.py) ← Zentrale Quelle der Wahrheit!\n  ↓\nRepository (mysql_device_repository.py)\n  ↓\nDatabase (MySQL)\n  ↓\nUse Cases (device_usecases.py)\n```",
+      "x": -350,
+      "y": 1300,
+      "width": 1000,
+      "height": 200,
+      "color": "4"
+    },
+    {
+      "id": "11",
+      "type": "text",
+      "text": "## 💡 WICHTIGE DATEIEN\n\n| Datei | Zweck | Änderung häufig? |\n|-------|-------|------------------|\n| `src/core/domain/device.py` | Data Model | ⭐⭐⭐ Oft |\n| `src/adapters/web/routes/device_routes.py` | API Endpoints | ⭐⭐ Manchmal |\n| `src/adapters/persistence/mysql_device_repository.py` | DB Zugriff | ⭐⭐⭐ Oft |\n| `templates/quick_add.html` | UI Form | ⭐⭐ Manchmal |\n| `schema.sql` | DB Schema | ⭐⭐⭐ Oft |",
+      "x": -350,
+      "y": 1600,
+      "width": 1000,
+      "height": 200,
+      "color": "5"
+    },
+    {
+      "id": "12",
+      "type": "text",
+      "text": "## 🎯 BEISPIEL: warranty_years hinzufügen\n\n**1. Datenbank:**\n```sql\nALTER TABLE devices ADD COLUMN warranty_years INT DEFAULT 1;\n```\n\n**2. Domain (device.py):**\n```python\nwarranty_years: Optional[int] = None\n```\n\n**3. Routes (device_routes.py):**\n```python\nwarranty_years=data.get('warranty_years')\n```\n\n**4. Repository (mysql_device_repository.py):**\n```python\nwarranty_years=row.get('warranty_years')\n# In Query:\n(..., warranty_years)\nVALUES (..., %s)\ncursor.execute(query, (..., device.warranty_years))\n```\n\n**5. Template (quick_add.html):**\n```html\n<input type=\"number\" name=\"warranty_years\" value=\"1\">\n```\n\n**6. Container:**\n```fish\npodman restart benning-flask\n```",
+      "x": -350,
+      "y": 1900,
+      "width": 1000,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "13",
+      "type": "text",
+      "text": "## 🚀 SCHNELLE REFERENZ\n\n```\nTemplate Input\n    ↓\nRoutes (data.get)\n    ↓\nDomain (Feld)\n    ↓\nRepository (Query)\n    ↓\nDatabase\n    ↓\nResponse zurück\n```\n\n**Alle müssen synchron sein!**\n\nWenn eines nicht passt → Container crasht oder Fehler!",
+      "x": -350,
+      "y": 2400,
+      "width": 1000,
+      "height": 250,
+      "color": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "2",
+      "toNode": "3",
+      "label": "Form Data\n(POST JSON)"
+    },
+    {
+      "id": "e2",
+      "fromNode": "3",
+      "toNode": "4",
+      "label": "Device\nObjekt"
+    },
+    {
+      "id": "e3",
+      "fromNode": "4",
+      "toNode": "5",
+      "label": "Domain\nInstanz"
+    },
+    {
+      "id": "e4",
+      "fromNode": "5",
+      "toNode": "6",
+      "label": "Mit QR-Code\n& device_id"
+    },
+    {
+      "id": "e5",
+      "fromNode": "6",
+      "toNode": "7",
+      "label": "INSERT\nQuery"
+    },
+    {
+      "id": "e6",
+      "fromNode": "7",
+      "toNode": "6",
+      "label": "Response\nzurück"
+    },
+    {
+      "id": "e7",
+      "fromNode": "1",
+      "toNode": "8",
+      "label": "Alle Felder\nmappen"
+    },
+    {
+      "id": "e8",
+      "fromNode": "8",
+      "toNode": "9",
+      "label": "Neue Felder\nhinzufügen"
+    },
+    {
+      "id": "e9",
+      "fromNode": "9",
+      "toNode": "10",
+      "label": "Abhängigkeiten\nbeachten"
+    },
+    {
+      "id": "e10",
+      "fromNode": "10",
+      "toNode": "11",
+      "label": "Wichtige\nDateien"
+    },
+    {
+      "id": "e11",
+      "fromNode": "11",
+      "toNode": "12",
+      "label": "Praktisches\nBeispiel"
+    },
+    {
+      "id": "e12",
+      "fromNode": "12",
+      "toNode": "13",
+      "label": "Schnelle\nReferenz"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "nodes": [
+    {
+      "id": "main-title",
+      "type": "text",
+      "text": "# Treedix USB-C Kabeltester\n## 4-Zoll Farb-Display - Prüfgerät\n\n**Hersteller:** Treedix  \n**Website:** www.treedix.com  \n**Funktion:** Vollständige USB-C Kabel & Netzteil-Prüfung",
+      "x": 0,
+      "y": -700,
+      "width": 600,
+      "height": 120
+    },
+    {
+      "id": "quick-overview",
+      "type": "text",
+      "text": "## 🎯 Schnellübersicht\n\n**Kernfunktionen:**\n- ✓ USB 2.0 bis USB 3.2 Gen 2 Erkennung\n- ✓ Power Delivery 3.0 & 3.1 (bis 240W)\n- ✓ Widerstandsprüfung aller Pins\n- ✓ eMarker-Daten auslesen\n- ✓ Thunderbolt 3/4 Pass-Through\n\n**Display:** 4-Zoll Farb-LCD Touchscreen  \n**Genauigkeit:** ±0,5% Spannung, ±1% Strom  \n**Betrieb:** USB-Netzteil oder 2× AA Batterie",
+      "x": 0,
+      "y": -550,
+      "width": 600,
+      "height": 140
+    },
+    {
+      "id": "geraete-specs",
+      "type": "text",
+      "text": "## 📋 Gerätespezifikationen\n\n**Display & Bedienung:**\n- 4-Zoll Farb-LCD Touchscreen\n- Schutzklasse: IP20 (Display geschützt)\n- Navigationstasten + Touchscreen\n\n**Anschlüsse:**\n- USB-C (duplex)\n- Standard USB\n- Stromversorgung: 5V USB / Batterie\n\n**Physikalische Daten:**\n- Gewicht: ~200g\n- Abmessungen: 120 × 80 × 30mm\n- Betriebstemp.: 0-40°C\n- Lagertemp.: -20 bis +50°C",
+      "x": -650,
+      "y": -350,
+      "width": 380,
+      "height": 220
+    },
+    {
+      "id": "messgroessen",
+      "type": "text",
+      "text": "## 📊 Messgrössen & Bereiche\n\n**Spannungsmessung (VBUS):**\n- Bereich: 0-21V | Auflösung: 0,1V\n- Genauigkeit: ±0,2V\n\n**Strommessung:**\n- Bereich: 0-6A | Auflösung: 0,01A\n- Genauigkeit: ±0,05A\n\n**Leistungsmessung:**\n- Bereich: 0-130W | Auflösung: 0,1W\n- Genauigkeit: ±1W\n\n**Widerstandsmessung:**\n- Bereich: 0-10kΩ\n- Auflösung: 1mΩ (im mΩ-Bereich)",
+      "x": -200,
+      "y": -350,
+      "width": 380,
+      "height": 220
+    },
+    {
+      "id": "protokolle",
+      "type": "text",
+      "text": "## 🔌 Erkannte Protokolle\n\n✓ USB 2.0 (480 Mbps)  \n✓ USB 3.2 Gen 1 (5 Gbps)  \n✓ USB 3.2 Gen 2 (10 Gbps)  \n✓ Power Delivery 3.0 (bis 100W)  \n✓ Power Delivery 3.1 (bis 240W, EPR)  \n✓ USB-C eMarker Erkennung  \n✓ Thunderbolt 3/4 Pass-Through  \n\n**Erkennungszeit:** <1 Sekunde",
+      "x": 250,
+      "y": -350,
+      "width": 380,
+      "height": 220
+    },
+    {
+      "id": "test-modes-overview",
+      "type": "text",
+      "text": "## 🧪 Testmodi - Übersicht\n\n| Modus | Funktion | Dauer |\n|-------|----------|-------|\n| **Basic Functions** | USB-Protokoll & PD-Erkennung | <1s |\n| **Type-C Pinout** | Pin-Spannungen & Funktionen | 2-3s |\n| **Resistance Test** | Widerstandsprüfung aller Pins | 3-5s |\n| **eMarker** | Kabel-Daten auslesen | 1-2s |\n| **Voltage Monitor** | Echtzeit-Spannungsüberwachung | Kontinuierlich |\n\n**Gesamtprüfzeit:** Ca. 10-15 Sekunden für vollständige Analyse",
+      "x": 650,
+      "y": -350,
+      "width": 380,
+      "height": 220
+    },
+    {
+      "id": "test-modus-1",
+      "type": "text",
+      "text": "## 1️⃣ Testmodus: Basic Functions\n\n**Navigation:** Hauptmenü → Basic Functions\n\n**Geprüfte Parameter:**\n\n**Data Transmission Mode:**\n- USB 2.0 Erkennung (480 Mbps)\n- USB 3.2 Gen1 Erkennung (5 Gbps)\n- USB 3.2 Gen2 Erkennung (10 Gbps)\n- Datenleitung Integrität\n\n**Power Transmission Mode:**\n- PD 3.0 Erkennung (bis 100W)\n- PD 3.1 Erkennung (bis 240W, EPR)\n- VBUS Spannungsprüfung\n- Strombelastbarkeit\n\n**Anzeigeformat:**\n- ✓ = Funktion aktiv und fehlerfrei\n- ✗ = Funktion nicht erkannt oder Fehler\n- ~ = Begrenzte Funktionalität",
+      "x": -650,
+      "y": 0,
+      "width": 380,
+      "height": 280
+    },
+    {
+      "id": "test-modus-2",
+      "type": "text",
+      "text": "## 2️⃣ Testmodus: Type-C Pinout\n\n**Navigation:** Hauptmenü → Type-C Details\n\n**Geprüfte Pins (B-Seite, 12 Pins):**\n- B1-B12: Alle USB-C Stecker-Pins\n- Pin-Namen und Funktionen\n- Spannungsprüfung pro Pin\n- Impedanzmatching\n\n**Farb-Codierung:**\n- 🟢 Grün: Korrekt funktionierend\n- 🔴 Rot: Fehler oder nicht erkannt\n- 🟡 Orange: Warnung, reduzierte Funktion\n- ⚪ Grau: Nicht verwendet/Standard\n\n**Wichtige Pins:**\nGND, VBUS, CC1/CC2, D+/D-, TX1/RX1, TX2/RX2, SBU1/SBU2",
+      "x": -200,
+      "y": 0,
+      "width": 380,
+      "height": 280
+    },
+    {
+      "id": "test-modus-3",
+      "type": "text",
+      "text": "## 3️⃣ Testmodus: Resistance Test\n\n**Navigation:** Hauptmenü → Resistance\n\n**Gemessene Widerstände:**\n\n| Messung | Normal-Bereich | Einheit |\n|---------|----------------|----------|\n| VBUS-GND | <100 | mΩ |\n| SHELL-GND | ∞ / kein SHORT | Ω |\n| D+-D- | 90±20 | Ω |\n| CC1-GND | >1 | MΩ |\n| CC2-GND | >1 | MΩ |\n| TX1-RX1 | 90±20 | Ω |\n| TX2-RX2 | 90±20 | Ω |\n| Alle anderen | >1 | MΩ |\n\n**Interpretation:**\n- SHORT = Kurzschluss erkannt → Kabel defekt!\n- Normal = Wert im erwarteten Bereich\n- OPEN = Unterbruch → Kabel defekt!",
+      "x": 250,
+      "y": 0,
+      "width": 380,
+      "height": 280
+    },
+    {
+      "id": "test-modus-4",
+      "type": "text",
+      "text": "## 4️⃣ Testmodus: USB-C eMarker\n\n**Navigation:** Hauptmenü → eMarker (nur bei Kabeln mit eMarker)\n\n**Ausgelesene eMarker Daten:**\n- **Type:** Passive / Active Cable\n- **Latency:** <10ns bei <2m Länge\n- **Supply:** Spannungs- und Stromklasse\n- **Speed:** USB 3.2 Gen 1/Gen 2\n- **Vendor ID:** Hersteller-Kennzeichnung\n- **Hardware Version:** HW:xxxx\n- **Firmware Version:** FW:xxxx\n- **Zertifikat:** USB-IF Zertifikat vorhanden?\n\n**Zertifizierungspflicht:**\n- Pflicht für Kabel >3A\n- Pflicht für eAll ≥50V Anwendungen\n- Validierung gegen USB-IF Zertifikat",
+      "x": 650,
+      "y": 0,
+      "width": 380,
+      "height": 280
+    },
+    {
+      "id": "bedienung",
+      "type": "text",
+      "text": "## ⚙️ Bedienung & Navigation\n\n**Einschalten:**\n- Netzteil anschließen ODER\n- Batterie installieren (2× AA)\n\n**Navigationstasten:**\n- ◀ / ▶: Menü vor/zurück\n- ✓ / ⏎: Bestätigung / Enter\n- ⌫: Zurück\n- Power: Ein/Aus\n\n**Menü-Struktur:**\n```\nHauptmenü\n├─ Basic Functions\n├─ Type-C Pinout\n├─ Resistance Test\n├─ eMarker (wenn vorhanden)\n├─ Voltage Monitor\n├─ Settings\n└─ About\n```\n\n**Standardansicht:**\nZeigt aktive Verbindung und erkannte Protokolle an",
+      "x": -650,
+      "y": 350,
+      "width": 380,
+      "height": 260
+    },
+    {
+      "id": "fehlerbehandlung",
+      "type": "text",
+      "text": "## ⚠️ Fehlercodes & Lösungen\n\n| Fehler | Bedeutung | Lösung |\n|--------|-----------|--------|\n| NO DEVICE | Kein Kabel erkannt | Kabel neu anstecken |\n| NO POWER | VBUS nicht aktiv | Netzteil überprüfen |\n| SHORT | Kurzschluss | Kabel defekt! |\n| ERROR XX | Hardware-Fehler | Gerät neustarten |\n| LOW BATTERY | Batterie schwach | Batterie wechseln |\n| TIMEOUT | Kommunikationsfehler | Neu verbinden |\n\n**Troubleshooting-Schritte:**\n1. Gerät neustarten (Power-Taste)\n2. Kabel fest anstecken\n3. Display mit Tuch reinigen\n4. USB-Netzteil prüfen (mind. 2A)\n5. Im Zweifelsfall Factory Reset",
+      "x": -200,
+      "y": 350,
+      "width": 380,
+      "height": 260
+    },
+    {
+      "id": "pruefablauf",
+      "type": "text",
+      "text": "## ✅ Prüfablauf Schritt-für-Schritt\n\n**1. Vorbereitung:**\n- [ ] Gerät funktionsfähig\n- [ ] Batterie / Netzteil prüfen\n- [ ] Kabel visuell prüfen\n- [ ] ID / Etikette des Kabels notieren\n\n**2. Schnelltest:**\n- [ ] Kabel anschließen\n- [ ] Basic Functions prüfen\n- [ ] Protokolle notieren\n\n**3. Detailprüfung:**\n- [ ] Type-C Pinout fotografieren\n- [ ] Resistance Test durchführen\n- [ ] eMarker prüfen (falls vorhanden)\n\n**4. Bewertung & Dokumentation:**\n- [ ] Alle Tests bestanden?\n- [ ] Bestanden / Nicht bestanden\n- [ ] Prüfdatum und Prüfer\n- [ ] Fotos speichern und archivieren",
+      "x": 250,
+      "y": 350,
+      "width": 380,
+      "height": 260
+    },
+    {
+      "id": "wartung",
+      "type": "text",
+      "text": "## 🔧 Wartung & Kalibrierung\n\n**Tägliche Pflege:**\n- Display mit weichem Tuch abwischen\n- USB-C Buchse von Verschmutzung befreien\n- Batteriestatus prüfen\n\n**Wöchentlich:**\n- Testmessungen mit bekanntem Netzteil\n- Funktionsprüfung durchführen\n\n**Monatlich:**\n- Vergleichsmessung mit Referenzkabel\n- Gängigkeit aller Tasten prüfen\n- Software-Update prüfen\n\n**Jährlich:**\n- Kalibrierung durchführen\n- Zertifikat anfordern\n- Wartung durch Hersteller\n\n**Lagerung:**\n- Trocken, 15-25°C\n- Vor Stößen geschützt\n- Batterie bei >3 Monaten entfernen",
+      "x": 650,
+      "y": 350,
+      "width": 380,
+      "height": 260
+    },
+    {
+      "id": "referenzkabel",
+      "type": "text",
+      "text": "## 📌 Referenzkabel & Standards\n\n**Empfohlene Referenzkabel:**\n- USB 2.0 Kabel (zertifiziert)\n- USB 3.2 Gen 1 Kabel (zertifiziert)\n- USB 3.2 Gen 2 Kabel (zertifiziert)\n- PD 3.0 Kabel (60W)\n- PD 3.1 Kabel (240W)\n\n**Relevante Standards:**\n- USB-IF Zertifizierung\n- USB 3.2 Specification\n- USB Power Delivery 3.1\n- IEC 62680 (USB Typ-C Stecker)\n- VDE-Normen (Deutschland)\n\n**Kalibrierung:**\n- Jährliche Kalibrierung empfohlen\n- Zertifikat vom Hersteller anfordern\n- Vergleichsmessungen mit Referenzkabeln",
+      "x": -650,
+      "y": 680,
+      "width": 380,
+      "height": 200
+    },
+    {
+      "id": "tipps-tricks",
+      "type": "text",
+      "text": "## 💡 Tipps & Tricks\n\n**Effiziente Prüfung:**\n- Schnelltest zuerst (Basic Functions)\n- Nur bei Auffälligkeiten Detailprüfung\n- Fotos für Dokumentation machen\n\n**Häufige Probleme:**\n- Verschmutzte USB-C Buchse → reinigen\n- Lockerer Kontakt → fest anstecken\n- Alte Batterie → wechseln\n- Display-Kratzer → Schutzfolie verwenden\n\n**Optimale Bedingungen:**\n- Raumtemperatur 20-25°C\n- Trockene Umgebung\n- Stabile Stromversorgung\n- Kabel vor Prüfung 5 Min. akklimatisieren",
+      "x": -200,
+      "y": 680,
+      "width": 380,
+      "height": 200
+    },
+    {
+      "id": "externe-links",
+      "type": "text",
+      "text": "## 🌐 Externe Ressourcen\n\n**Hersteller & Support:**\n- [Treedix Website](https://www.treedix.com)\n- [Bedienungsanleitung PDF](https://www.treedix.com/manual)\n- [Support & FAQ](https://www.treedix.com/support)\n- [Firmware Updates](https://www.treedix.com/firmware)\n\n**Standards & Normen:**\n- USB-IF Zertifizierung\n- USB 3.2 Specification\n- USB Power Delivery 3.1\n- IEC 62680 (USB Typ-C Stecker)\n\n**Referenzmaterialien:**\n- USB-C Pinout Diagram\n- PD 3.1 Protocol Specification\n- eMarker Data Format",
+      "x": 250,
+      "y": 680,
+      "width": 380,
+      "height": 200
+    },
+    {
+      "id": "quick-reference",
+      "type": "text",
+      "text": "## 📖 Schnellreferenz\n\n**Normale Messwerte:**\n- VBUS: 5V / 9V / 15V / 20V\n- Strom: 0-6A (abhängig von PD)\n- Leistung: 0-130W\n- Widerstände: siehe Resistance Test\n\n**Fehlerkennzeichen:**\n- Rote Anzeigen = Problem\n- Widerstand zu hoch/niedrig = Fehler\n- Kein VBUS = Netzteil-Problem\n- SHORT erkannt = Kabel defekt\n\n**Kontakt & Support:**\n- Treedix Support: support@treedix.com\n- Telefon: +1-XXX-XXXX\n- Live Chat: www.treedix.com/support",
+      "x": 650,
+      "y": 680,
+      "width": 380,
+      "height": 200
+    }
+  ],
+  "edges": [
+    {
+      "id": "title-overview",
+      "fromNode": "main-title",
+      "fromSide": "bottom",
+      "toNode": "quick-overview",
+      "toSide": "top"
+    },
+    {
+      "id": "overview-specs",
+      "fromNode": "quick-overview",
+      "fromSide": "bottom",
+      "toNode": "geraete-specs",
+      "toSide": "top"
+    },
+    {
+      "id": "overview-measurements",
+      "fromNode": "quick-overview",
+      "fromSide": "bottom",
+      "toNode": "messgroessen",
+      "toSide": "top"
+    },
+    {
+      "id": "overview-protocols",
+      "fromNode": "quick-overview",
+      "fromSide": "bottom",
+      "toNode": "protokolle",
+      "toSide": "top"
+    },
+    {
+      "id": "overview-testmodes",
+      "fromNode": "quick-overview",
+      "fromSide": "bottom",
+      "toNode": "test-modes-overview",
+      "toSide": "top"
+    },
+    {
+      "id": "testmodes-basic",
+      "fromNode": "test-modes-overview",
+      "fromSide": "bottom",
+      "toNode": "test-modus-1",
+      "toSide": "top"
+    },
+    {
+      "id": "testmodes-pinout",
+      "fromNode": "test-modes-overview",
+      "fromSide": "bottom",
+      "toNode": "test-modus-2",
+      "toSide": "top"
+    },
+    {
+      "id": "testmodes-resistance",
+      "fromNode": "test-modes-overview",
+      "fromSide": "bottom",
+      "toNode": "test-modus-3",
+      "toSide": "top"
+    },
+    {
+      "id": "testmodes-emarker",
+      "fromNode": "test-modes-overview",
+      "fromSide": "bottom",
+      "toNode": "test-modus-4",
+      "toSide": "top"
+    },
+    {
+      "id": "modus1-bedienung",
+      "fromNode": "test-modus-1",
+      "fromSide": "bottom",
+      "toNode": "bedienung",
+      "toSide": "top"
+    },
+    {
+      "id": "modus2-fehler",
+      "fromNode": "test-modus-2",
+      "fromSide": "bottom",
+      "toNode": "fehlerbehandlung",
+      "toSide": "top"
+    },
+    {
+      "id": "modus3-ablauf",
+      "fromNode": "test-modus-3",
+      "fromSide": "bottom",
+      "toNode": "pruefablauf",
+      "toSide": "top"
+    },
+    {
+      "id": "modus4-wartung",
+      "fromNode": "test-modus-4",
+      "fromSide": "bottom",
+      "toNode": "wartung",
+      "toSide": "top"
+    },
+    {
+      "id": "bedienung-referenz",
+      "fromNode": "bedienung",
+      "fromSide": "bottom",
+      "toNode": "referenzkabel",
+      "toSide": "top"
+    },
+    {
+      "id": "fehler-tipps",
+      "fromNode": "fehlerbehandlung",
+      "fromSide": "bottom",
+      "toNode": "tipps-tricks",
+      "toSide": "top"
+    },
+    {
+      "id": "ablauf-links",
+      "fromNode": "pruefablauf",
+      "fromSide": "bottom",
+      "toNode": "externe-links",
+      "toSide": "top"
+    },
+    {
+      "id": "wartung-reference",
+      "fromNode": "wartung",
+      "fromSide": "bottom",
+      "toNode": "quick-reference",
+      "toSide": "top"
+    }
+  ]
+}

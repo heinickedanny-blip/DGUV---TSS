@@ -1,0 +1,72 @@
+Jan 19 12:09:55 L-10144 systemd[1]: Starting MariaDB 11.8.5 database server...
+░░ Subject: A start job for unit mariadb.service has begun execution
+░░ Defined-By: systemd
+░░ Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+░░ 
+░░ A start job for unit mariadb.service has begun execution.
+░░ 
+░░ The job identifier is 137322.
+Jan 19 12:09:55 L-10144 (mariadbd)[38327]: mariadb.service: Referenced but unset environment variable evaluates to an empty string: MYSQLD_OPTS, _WSREP_NEW_CLUSTER
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] Starting MariaDB 11.8.5-MariaDB source revision a74edc42d080a73e20d5d94e1dd5beea400b507c server_uid mMghqcHRpNMLEoAlKjuQQmAIMl4= as process 38327
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: The first data file './ibdata1' did not exist. A new tablespace will be created!
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Number of transaction pools: 1
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Using AVX512 instructions
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Using io_uring
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: innodb_buffer_pool_size_max=128m, innodb_buffer_pool_size=128m
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Initialized memory pressure event listener
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Completed initialization of buffer pool
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Setting file './ibdata1' size to 12.000MiB. Physically writing the file full; Please wait ...
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: File './ibdata1' size is now 12.000MiB.
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Data file .//undo001 did not exist: new to be created
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Setting file .//undo001 size to 10.000MiB
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Database physically writes the file full: wait...
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Data file .//undo002 did not exist: new to be created
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Setting file .//undo002 size to 10.000MiB
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Database physically writes the file full: wait...
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Data file .//undo003 did not exist: new to be created
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Setting file .//undo003 size to 10.000MiB
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Database physically writes the file full: wait...
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Doublewrite buffer not found: creating new
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Doublewrite buffer created
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Opened 3 undo tablespaces
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] InnoDB: log sequence number 0; transaction id 3
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] Plugin 'wsrep-provider' is disabled.
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [ERROR] Could not open mysql.plugin table: "Table 'mysql.plugin' doesn't exist". Some plugins may be not loaded
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [ERROR] Can't open and lock privilege tables: Table 'mysql.servers' doesn't exist
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] Server socket created on IP: '0.0.0.0', port: '3306'.
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [Note] Server socket created on IP: '::', port: '3306'.
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [ERROR] Fatal error: Can't open and lock privilege tables: Table 'mysql.db' doesn't exist
+Jan 19 12:09:55 L-10144 mariadbd[38327]: 2026-01-19 12:09:55 0 [ERROR] Aborting
+Jan 19 12:09:56 L-10144 systemd[1]: mariadb.service: Main process exited, code=exited, status=1/FAILURE
+░░ Subject: Unit process exited
+░░ Defined-By: systemd
+░░ Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+░░ 
+░░ An ExecStart= process belonging to unit mariadb.service has exited.
+░░ 
+░░ The process' exit code is 'exited' and its exit status is 1.
+Jan 19 12:09:56 L-10144 systemd[1]: mariadb.service: Failed with result 'exit-code'.
+░░ Subject: Unit failed
+░░ Defined-By: systemd
+░░ Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+░░ 
+░░ The unit mariadb.service has entered the 'failed' state with result 'exit-code'.
+Jan 19 12:09:56 L-10144 systemd[1]: Failed to start MariaDB 11.8.5 database server.
+░░ Subject: A start job for unit mariadb.service has failed
+░░ Defined-By: systemd
+░░ Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+░░ 
+░░ A start job for unit mariadb.service has finished with a failure.
+░░ 
+░░ The job identifier is 137322 and the job result is failed.
+Jan 19 12:09:56 L-10144 systemd[1]: mariadb.service: Consumed 215ms CPU time over 589ms wall clock time, 177.8M memory peak.
+░░ Subject: Resources consumed by unit runtime
+░░ Defined-By: systemd
+░░ Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+░░ 
+░░ The unit mariadb.service completed and consumed the indicated resources.

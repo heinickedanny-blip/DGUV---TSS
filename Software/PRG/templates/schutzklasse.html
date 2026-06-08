@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Schutzklassen-Prüfungen - Benning Device Manager{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 2rem;">
+    <h1
+        style="background: linear-gradient(135deg, #d4a5a5 0%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.5rem;">
+        <i class="fas fa-shield-alt"></i> Handout Schutzklassen-Prüfungen 
+    </h1>
+    <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 800px;">Eine Übersicht der wichtigsten Prüfverfahren für Gerätetester.</p>
+</div>
+
+<!-- Schutzklasse 1 -->
+<div class="detail-card" style="margin-top: 2rem;">
+    <h2 style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i class="fas fa-plug"></i> Prüfung von Geräten der Schutzklasse 1 (SK I)</h2>
+    
+    <div style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; align-items: start;">
+        <!-- Bild links -->
+        <div style="text-align: center;">
+            <img src="{{ url_for('static', filename='uploads/schutzklasse1.png') }}" alt="Prüfaufbau Schutzklasse 1" style="max-width: 100%; height: auto; border: 1px solid rgba(212, 165, 165, 0.3); border-radius: 8px; padding: 1rem; background: rgba(255, 255, 255, 0.05);">
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Prüfaufbau für Schutzklasse 1</p>
+        </div>
+        
+        <!-- Text rechts -->
+        <div>
+            <p>Geräte der Schutzklasse 1 verfügen über einen **Schutzleiter (PE)** als grundlegende Sicherheitsmaßnahme. Die Prüfung umfasst drei wesentliche Messungen:</p>
+            
+            <div style="margin-top: 1.5rem;">
+                <h4 style="color: var(--accent-gold);">1. Schutzleiterwiderstand (R_PE)</h4>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Misst den Widerstand des Schutzleiters, um sicherzustellen, dass im Fehlerfall eine niederohmige Verbindung zur Erde besteht und eine schnelle Abschaltung erfolgt.</p>
+                <ul style="margin-left: 2rem; color: var(--text-secondary); line-height: 1.8; margin-top: 0.5rem;">
+                    <li><strong>Prüfstrom:</strong> 200 mA</li>
+                    <li><strong>Grenzwert:</strong> Typischerweise < 0,3 Ω (bis 5m Leitungslänge)</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h4 style="color: var(--accent-gold);">2. Isolationswiderstand (R_ISO)</h4>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Überprüft die Qualität der Isolierung zwischen den aktiven Leitern (L/N) und dem Schutzleiter (PE), um gefährliche Kriechströme zu verhindern.</p>
+                <ul style="margin-left: 2rem; color: var(--text-secondary); line-height: 1.8; margin-top: 0.5rem;">
+                    <li><strong>Prüfspannung:</strong> 500 V DC</li>
+                    <li><strong>Grenzwert:</strong> > 1,0 MΩ</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h4 style="color: var(--accent-gold);">3. Schutzleiterstrom (I_PE)</h4>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Misst den Strom, der im normalen Betrieb über den Schutzleiter abfließt. Ein zu hoher Wert kann auf einen beginnenden Isolationsfehler hinweisen. Die Messung erfolgt über das Differenzstromverfahren.</p>
+                <ul style="margin-left: 2rem; color: var(--text-secondary); line-height: 1.8; margin-top: 0.5rem;">
+                    <li><strong>Grenzwert:</strong> < 3,5 mA</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Schutzklasse 2 & 3 -->
+<div class="detail-card" style="margin-top: 2rem;">
+    <h2 style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i class="fas fa-user-shield"></i> Prüfung von Geräten der Schutzklasse 2 (SK II) & 3 (SK III)</h2>
+    
+    <div style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; align-items: start;">
+        <!-- Bild links -->
+        <div style="text-align: center;">
+            <img src="{{ url_for('static', filename='uploads/schutzklasse2.png') }}" alt="Prüfaufbau Schutzklasse 2" style="max-width: 100%; height: auto; border: 1px solid rgba(212, 165, 165, 0.3); border-radius: 8px; padding: 1rem; background: rgba(255, 255, 255, 0.05);">
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Prüfaufbau für Schutzklasse 2</p>
+        </div>
+        
+        <!-- Text rechts -->
+        <div>
+            <p>Geräte der Schutzklasse 2 (schutzisoliert) und 3 (Schutzkleinspannung) haben **keinen Schutzleiter**. Die Sicherheit wird durch eine verstärkte oder doppelte Isolierung (SK II) oder durch eine sehr niedrige Spannung (SK III) gewährleistet. Bei diesen Geräten wird der **Berührungsstrom (I_B)** gemessen.</p>
+            
+            <div style="margin-top: 1.5rem;">
+                <h4 style="color: var(--accent-gold);">Berührungsstrom (I_B)</h4>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Misst den Strom, der bei Berührung berührbarer leitfähiger Teile fließen würde. Dies stellt sicher, dass auch ohne Schutzleiter keine Gefahr für den Benutzer besteht.</p>
+                <ul style="margin-left: 2rem; color: var(--text-secondary); line-height: 1.8; margin-top: 0.5rem;">
+                    <li><strong>Grenzwert:</strong> < 0,5 mA</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Weitere Prüfungen -->
+<div class="detail-card" style="margin-top: 2rem;">
+    <h2 style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i class="fas fa-cogs"></i> Weitere spezielle Prüfverfahren</h2>
+    
+    <div style="margin-top: 1.5rem;">
+        <h4 style="color: var(--accent-gold);">Prüfung von dreiphasigen Geräten</h4>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Die Prüfung von Drehstromgeräten wird in zwei Modi unterteilt:</p>
+        <ul style="margin-left: 2rem; color: var(--text-secondary); line-height: 1.8; margin-top: 0.5rem;">
+            <li><strong>Passive Prüfung:</strong> R_PE und R_ISO werden ohne Netzversorgung des Prüflings gemessen.</li>
+            <li><strong>Aktive Prüfung:</strong> Mit einem speziellen Adapter kann eine Messung des Schutzleiter- oder Differenzstroms unter Betriebsbedingungen erfolgen.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 1.5rem;">
+        <h4 style="color: var(--accent-gold);">Prüfung von Kabeln und Mehrfachsteckdosen</h4>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Verlängerungskabel, Kabeltrommeln und Mehrfachsteckdosen werden auf R_PE, R_ISO und auf einen Kurzschluss zwischen den aktiven Leitern geprüft.</p>
+    </div>
+
+    <div style="margin-top: 1.5rem;">
+        <h4 style="color: var(--accent-gold);">Prüfung von FI-Schutzschaltern (RCDs)</h4>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Das Gerät unterstützt die Prüfung von fest installierten und mobilen FI-Schutzschaltern (RCCBs/RCDs). Dabei werden zwei kritische Parameter gemessen:</p>
+        <ul style="margin-left: 2rem; color: var(--text-secondary); line-height: 1.8; margin-top: 0.5rem;">
+            <li><strong>Auslösezeit (t_A):</strong> Die Zeit, die der Schalter zum Auslösen benötigt.</li>
+            <li><strong>Auslösestrom (I_ΔN):</strong> Der exakte Fehlerstrom, bei dem der Schalter auslöst.</li>
+        </ul>
+    </div>
+</div>
+
+<div style="margin-top: 3rem;">
+    <a href="{{ url_for('index') }}" class="btn-primary"><i class="fas fa-arrow-left"></i> Zurück zum Dashboard</a>
+</div>
+
+{% endblock %}

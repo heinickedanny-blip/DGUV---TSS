@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Benning Device Manager{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 2rem;">
+    <h1
+        style="background: linear-gradient(135deg, #d4a5a5 0%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.5rem;">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </h1>
+
+</div>
+
+<!-- Diagramm und Schnellzugriff -->
+
+<div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-top: 3rem; align-items: start;">
+
+    <!-- Kreisdiagramm (Linke Seite) -->
+    <div class="detail-card"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <h3 style="color: var(--accent-rose); margin-bottom: 1.0rem; width: 100%; text-align: center;">
+            <i class="fas fa-chart-pie"></i> Geräte-Übersicht
+        </h3>
+        <div style="width: 100%; max-width: 400px; position: relative;">
+            <canvas id="deviceStatusChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Schnellzugriff (Rechte Seite) -->
+    <div>
+        <!-- Hauptstatistiken -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3>{{ total_devices }}</h3>
+                        <p style="color: var(--text-secondary);">Gesamtgeräte</p>
+                    </div>
+                    <i class="fas fa-boxes" style="font-size: 2rem; color: var(--accent-gold); opacity: 0.3;"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="color: #4caf50;">{{ all_devices|selectattr('status', 'equalto', 'active')|list|length
+                            }}</h3>
+                        <p style="color: var(--text-secondary);">Bestandene Geräte</p>
+                    </div>
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: #4caf50; opacity: 0.3;"></i>
+                </div>
+            </div>
+
+            <!--<div class="stat-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="color: #ffc107;">{{ all_devices|selectattr('status', 'equalto', 'maintenance')|list|length }}</h3>
+                    <p style="color: var(--text-secondary);">In Wartung</p>
+                </div>
+                    <i class="fas fa-tools" style="font-size: 2rem; color: #ffc107; opacity: 0.3;"></i>
+                </div>
+            </div>-->
+
+            <div class="stat-card warning">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="color: #f44336;">{{ all_devices|selectattr('status', 'equalto',
+                            'retired')|list|length }}</h3>
+                        <p style="color: var(--text-secondary);">Außer Betrieb</p>
+                    </div>
+                    <i class="fas fa-times-circle" style="font-size: 2rem; color: #f44336; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.7rem;">
+            <!-- Neues Gerät -->
+            <div class="detail-card" style="text-align: center; cursor: pointer; transition: all 0.3s;"
+                onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'"
+                onclick="window.location.href='{{ url_for('quick_add') }}'">
+                <i class="fas fa-plus-circle"
+                    style="font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                <h3>Neues Gerät</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                    Erfassen Sie schnell ein neues Gerät
+                </p>
+                <a href="{{ url_for('quick_add') }}" class="btn-primary" style="margin-top: 1rem;">
+                    <i class="fas fa-arrow-right"></i> Zur Erfassung
+                </a>
+            </div>
+
+            <!-- Geräteliste -->
+            <div class="detail-card" style="text-align: center; cursor: pointer; transition: all 0.3s;"
+                onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'"
+                onclick="window.location.href='{{ url_for('devices') }}'">
+                <i class="fas fa-list" style="font-size: 2.5rem; color: var(--accent-rose); margin-bottom: 1rem;"></i>
+                <h3>Geräteliste</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                    Alle erfassten Geräte anzeigen und verwalten
+                </p>
+                <a href="{{ url_for('devices') }}" class="btn-primary" style="margin-top: 1rem;">
+                    <i class="fas fa-arrow-right"></i> Zur Liste
+                </a>
+            </div>
+
+            <!-- USB-C Prüfungen -->
+            <div class="detail-card" style="text-align: center; cursor: pointer; transition: all 0.3s;"
+                onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'"
+                onclick="window.location.href='{{ url_for('usbc_inspections') }}'">
+                <i class="fas fa-check-circle" style="font-size: 2.5rem; color: #4caf50; margin-bottom: 1rem;"></i>
+                <h3>USB-C Prüfungen</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                    Prüfungen durchführen und verwalten
+                </p>
+                <a href="{{ url_for('usbc_inspections') }}" class="btn-primary" style="margin-top: 1rem;">
+                    <i class="fas fa-arrow-right"></i> Zu den Prüfungen
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<!-- Letzte Geräte -->
+{% if recent_devices %}
+<div style="margin-top: 3rem;">
+    <h2 style="color: var(--accent-rose); margin-bottom: 1.5rem;">
+        <i class="fas fa-history"></i> Zuletzt hinzugefügte Geräte
+    </h2>
+
+    <table class="device-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kunde</th>
+                <th>Geräte-ID</th>
+                <th>Name</th>
+                <th>Typ</th>
+                <th>Status</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in recent_devices %}
+            <tr>
+                <td>{{ device.id }}</td>
+                <td>{{ device.customer }}</td>
+                <td><strong>{{ device.customer_device_id }}</strong></td>
+                <td>{{ device.name }}</td>
+                <td>{{ device.type }}</td>
+                <td>
+                    {% if device.status == 'active' %}
+                    <span class="badge badge-active"><i class="fas fa-check-circle"></i> Bestanden</span>
+                    {% elif device.status == 'inactive' %}
+                    <span class="badge" style="background: rgba(158, 158, 158, 0.2); color: #9e9e9e;"><i
+                            class="fas fa-pause-circle"></i> Inaktiv</span>
+                    {% elif device.status == 'maintenance' %}
+                    <span class="badge" style="background: rgba(255, 193, 7, 0.2); color: #ffc107;"><i
+                            class="fas fa-tools"></i> Wartung</span>
+                    {% elif device.status == 'retired' %}
+                    <span class="badge badge-failed"><i class="fas fa-times-circle"></i> Außer Betrieb</span>
+                    {% else %}
+                    <span class="badge">{{ device.status }}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('device_detail', device_id=device.id) }}" class="btn-small">
+                        <i class="fas fa-eye"></i> Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+<!-- Informationen -->
+<div style="margin-top: 3rem;">
+    <h2 style="color: var(--accent-rose); margin-bottom: 1.5rem;">
+        <i class="fas fa-info-circle"></i> Über dieses System
+    </h2>
+
+    <div class="detail-card">
+        <h3>Benning Device Manager</h3>
+        <p style="margin-top: 1rem; line-height: 1.8;">
+            Das Benning Device Manager System ist eine umfassende Lösung zur Verwaltung von Elektrowerkzeugen
+            und zur Durchführung von USB-C Kabel-Prüfungen nach DGUV Vorschriften.
+        </p>
+
+        <h4 style="color: var(--accent-rose); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-check"></i> Funktionen
+        </h4>
+        <ul style="margin-left: 2rem; color: var(--text-secondary);">
+            <li>Verwaltung von Geräten und deren Prüfhistorie</li>
+            <li>Automatische QR-Code Generierung</li>
+            <li>USB-C Kabel-Prüfungen durchführen</li>
+            <li>Prüfberichte generieren</li>
+            <li>Gerätelisten drucken und exportieren</li>
+            <li>Benutzerfreundliche Oberfläche</li>
+        </ul>
+
+        <h4 style="color: var(--accent-rose); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-shield-alt"></i> Sicherheit
+        </h4>
+        <p style="color: var(--text-secondary);">
+            Alle Daten werden sicher in einer verschlüsselten Datenbank gespeichert.
+            Das System erfüllt alle Anforderungen der DGUV Vorschriften.
+        </p>
+    </div>
+</div>
+
+<!-- Navigation Tipps -->
+<div
+    style="margin-top: 3rem; padding: 1.5rem; background: rgba(212, 165, 165, 0.1); border-radius: var(--border-radius); border-left: 4px solid var(--accent-rose);">
+    <h4 style="color: var(--accent-rose); margin-bottom: 0.5rem;">
+        <i class="fas fa-lightbulb"></i> Tipps zur Navigation
+    </h4>
+    <ul style="margin-left: 2rem; color: var(--text-secondary); margin-top: 0.5rem;">
+        <li>Nutzen Sie die <strong>Navigation im Header</strong> um zwischen den Seiten zu wechseln</li>
+        <li>Klicken Sie auf <strong>Dashboard</strong> um zur Startseite zurückzukehren</li>
+        <li>Verwenden Sie die <strong>Schnellerfassung</strong> um schnell neue Geräte hinzuzufügen</li>
+        <li>Die <strong>Geräteliste</strong> zeigt alle erfassten Geräte mit Suchfunktion</li>
+        <li>Drucken Sie Listen mit dem <strong>Drucken</strong> Button</li>
+        <li>Exportieren Sie als <strong>PDF</strong> für die Archivierung</li>
+    </ul>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Daten für das Kreisdiagramm
+        const allDevices = {{ all_devices| tojson
+    }};
+
+    // Zähle die Geräte nach Status
+    const statusCounts = {
+        active: 0,
+        inactive: 0,
+        maintenance: 0,
+        retired: 0
+    };
+
+    allDevices.forEach(device => {
+        if (device.status in statusCounts) {
+            statusCounts[device.status]++;
+        }
+    });
+
+    // Erstelle das Kreisdiagramm
+    const ctx = document.getElementById('deviceStatusChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                '✅ Bestanden (' + statusCounts.active + ')',
+                '❌ Inaktiv (' + statusCounts.inactive + ')',
+                '🔧 Wartung (' + statusCounts.maintenance + ')',
+                '🔴 Außer Betrieb (' + statusCounts.retired + ')'
+            ],
+            datasets: [{
+                data: [
+                    statusCounts.active,
+                    statusCounts.inactive,
+                    statusCounts.maintenance,
+                    statusCounts.retired
+                ],
+                backgroundColor: [
+                    '#4caf50',  // Grün - Bestanden
+                    '#9e9e9e',  // Grau - Inaktiv
+                    '#ffc107',  // Orange - Wartung
+                    '#f44336'   // Rot - Außer Betrieb
+                ],
+                borderColor: [
+                    '#388e3c',
+                    '#757575',
+                    '#f57f17',
+                    '#d32f2f'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: 'var(--text-secondary)',
+                        font: {
+                            size: 12
+                        },
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((context.parsed / total) * 100).toFixed(1);
+                            return context.label + ': ' + percentage + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

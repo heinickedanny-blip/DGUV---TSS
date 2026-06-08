@@ -1,0 +1,22 @@
+mysql: [Warning] Using a password on the command line interface can be insecure.
++--------------------+---------------------------------------------------+------+-----+-------------------+-----------------------------------------------+
+| Field              | Type                                              | Null | Key | Default           | Extra                                         |
++--------------------+---------------------------------------------------+------+-----+-------------------+-----------------------------------------------+
+| id                 | int                                               | NO   | PRI | NULL              | auto_increment                                |
+| customer           | varchar(255)                                      | YES  | MUL | NULL              |                                               |
+| customer_device_id | varchar(255)                                      | YES  | UNI | NULL              |                                               |
+| name               | varchar(255)                                      | NO   | MUL | NULL              |                                               |
+| type               | varchar(100)                                      | YES  |     | NULL              |                                               |
+| serial_number      | varchar(255)                                      | YES  | MUL | NULL              |                                               |
+| manufacturer       | varchar(255)                                      | YES  |     | NULL              |                                               |
+| model              | varchar(255)                                      | YES  |     | NULL              |                                               |
+| location           | varchar(255)                                      | YES  |     | NULL              |                                               |
+| purchase_date      | date                                              | YES  |     | NULL              |                                               |
+| last_inspection    | date                                              | YES  |     | NULL              |                                               |
+| next_inspection    | date                                              | YES  |     | NULL              |                                               |
+| status             | enum('active','inactive','maintenance','retired') | YES  | MUL | active            |                                               |
+| qr_code            | longblob                                          | YES  |     | NULL              |                                               |
+| notes              | text                                              | YES  |     | NULL              |                                               |
+| created_at         | timestamp                                         | YES  | MUL | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| updated_at         | timestamp                                         | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++--------------------+---------------------------------------------------+------+-----+-------------------+-----------------------------------------------+

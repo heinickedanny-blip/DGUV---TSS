@@ -1,0 +1,149 @@
+{
+  "nodes": [
+    {
+      "id": "start",
+      "type": "text",
+      "text": "# 🚀 Benning Device Manager\n## Podman Container Installation",
+      "x": 0,
+      "y": -400,
+      "width": 300,
+      "height": 150,
+      "color": "1"
+    },
+    {
+      "id": "step1",
+      "type": "text",
+      "text": "## 1️⃣ Podman installieren\n\n```bash\nbash install_podman_cachyos.sh\n```\n\n✅ Installiert:\n- Podman\n- podman-compose\n- Git, curl, wget",
+      "x": -400,
+      "y": -100,
+      "width": 280,
+      "height": 200,
+      "color": "2"
+    },
+    {
+      "id": "step2",
+      "type": "text",
+      "text": "## 2️⃣ Projekt vorbereiten\n\n```bash\ncd ~/Dokumente/vsCode/\nBenning-DGUV3/Software/PRG\n```\n\n✅ Struktur:\n- src/\n- templates/\n- static/\n- tests/",
+      "x": 0,
+      "y": -100,
+      "width": 280,
+      "height": 200,
+      "color": "3"
+    },
+    {
+      "id": "step3",
+      "type": "text",
+      "text": "## 3️⃣ Container starten\n\n```bash\nbash install_benning_podman_FINAL.sh .\n```\n\n⏳ Wartet auf:\n- MySQL\n- Flask App\n- Nginx (optional)",
+      "x": 400,
+      "y": -100,
+      "width": 280,
+      "height": 200,
+      "color": "4"
+    },
+    {
+      "id": "success",
+      "type": "text",
+      "text": "## ✅ Fertig!\n\n🌐 http://localhost:5000\n\n📊 Datenbank:\n- Host: localhost:3307\n- User: benning\n- Pass: benning",
+      "x": 0,
+      "y": 200,
+      "width": 300,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "commands",
+      "type": "text",
+      "text": "## 🛠️ Nützliche Befehle\n\n```bash\n# Logs\npodman-compose logs -f\n\n# Status\npodman-compose ps\n\n# Stoppen\npodman-compose down\n\n# In Container\npodman exec -it benning-flask bash\n```",
+      "x": -400,
+      "y": 200,
+      "width": 280,
+      "height": 240,
+      "color": "6"
+    },
+    {
+      "id": "files",
+      "type": "text",
+      "text": "## 📦 Wichtige Dateien\n\n- `Dockerfile.benning` - Flask Container\n- `podman-compose.yml` - Orchestration\n- `.env` - Konfiguration\n- `requirements_hexagon.txt` - Dependencies",
+      "x": 400,
+      "y": 200,
+      "width": 280,
+      "height": 200,
+      "color": "6"
+    },
+    {
+      "id": "troubleshoot",
+      "type": "text",
+      "text": "## 🔧 Fehlerbehandlung\n\n❌ Port 5000 belegt?\n```bash\nFLASK_PORT=5001\n```\n\n❌ MySQL Connection Error?\n```bash\npodman-compose restart mysql\n```\n\n❌ Permission Denied?\n```bash\nsudo systemctl start podman.socket\n```",
+      "x": 0,
+      "y": 500,
+      "width": 300,
+      "height": 240,
+      "color": "7"
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-step1",
+      "fromNode": "start",
+      "fromSide": "bottom",
+      "toNode": "step1",
+      "toSide": "top"
+    },
+    {
+      "id": "start-step2",
+      "fromNode": "start",
+      "fromSide": "bottom",
+      "toNode": "step2",
+      "toSide": "top"
+    },
+    {
+      "id": "start-step3",
+      "fromNode": "start",
+      "fromSide": "bottom",
+      "toNode": "step3",
+      "toSide": "top"
+    },
+    {
+      "id": "step1-success",
+      "fromNode": "step1",
+      "fromSide": "bottom",
+      "toNode": "success",
+      "toSide": "left"
+    },
+    {
+      "id": "step2-success",
+      "fromNode": "step2",
+      "fromSide": "bottom",
+      "toNode": "success",
+      "toSide": "top"
+    },
+    {
+      "id": "step3-success",
+      "fromNode": "step3",
+      "fromSide": "bottom",
+      "toNode": "success",
+      "toSide": "right"
+    },
+    {
+      "id": "success-commands",
+      "fromNode": "success",
+      "fromSide": "bottom",
+      "toNode": "commands",
+      "toSide": "top"
+    },
+    {
+      "id": "success-files",
+      "fromNode": "success",
+      "fromSide": "bottom",
+      "toNode": "files",
+      "toSide": "top"
+    },
+    {
+      "id": "success-troubleshoot",
+      "fromNode": "success",
+      "fromSide": "bottom",
+      "toNode": "troubleshoot",
+      "toSide": "top"
+    }
+  ]
+}
