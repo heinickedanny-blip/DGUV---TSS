@@ -43,9 +43,9 @@ class Container:
             # Get database configuration from environment variables
             db_host = os.getenv('DB_HOST', 'localhost')
             db_port = int(os.getenv('DB_PORT', '3306'))
-            db_user = os.getenv('DB_USER', 'benning_user')
-            db_password = os.getenv('DB_PASSWORD', 'benning_password')
-            db_name = os.getenv('DB_NAME', 'benning_db')
+            db_user = os.getenv('DB_USER', 'TSS')
+            db_password = os.getenv('DB_PASSWORD', 'TSS')
+            db_name = os.getenv('DB_NAME', 'db_TSS')
             
             self.logger.info(
                 "Initializing repositories",
