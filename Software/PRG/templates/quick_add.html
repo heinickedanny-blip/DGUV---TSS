@@ -11,13 +11,15 @@
         <div class="form-group">
             <label>Kunde: *</label>
             <input type="text" name="customer" id="customerInput" required autofocus 
-                   placeholder="z.B. Miro, Parloa, Siemens, etc.">
+                   value="{{ default_customer | default('TSS') }}"
+                   placeholder="z.B. TSS, Miro, Parloa, Siemens, etc.">
             <small>Die Device ID wird als "Kunde-00001" formatiert</small>
         </div>
         
         <div class="form-group">
             <label>Geräte-ID:</label>
             <input type="text" id="deviceId" name="device_id" readonly 
+                   value="{{ next_id | default('TSS-00001') }}"
                    placeholder="Wird automatisch generiert">
         </div>
         
@@ -509,13 +511,9 @@ document.getElementById('customerInput').addEventListener('change', async (e) =>
         return;
     }
     try {
-        // TODO: Rufe API auf um nächste Device ID zu generieren
-        // const response = await fetch(`/api/next-device-id?customer=${encodeURIComponent(customer)}`);
-        // const data = await response.json();
-        // document.getElementById('deviceId').value = data.next_id;
-        
-        // Placeholder bis API implementiert ist
-        document.getElementById('deviceId').value = `${customer}-00001`;
+        const response = await fetch(`/api/devices/next-id?customer=${encodeURIComponent(customer)}`);
+        const data = await response.json();
+        document.getElementById('deviceId').value = data.next_id || `${customer}-00001`;
     } catch (error) {
         console.error('Fehler beim Generieren der Device ID:', error);
     }

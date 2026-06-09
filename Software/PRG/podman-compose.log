@@ -1,0 +1,9 @@
+CONTAINER ID  IMAGE                        COMMAND               CREATED      STATUS                 PORTS                              NAMES
+b9cdca5a50d3  docker.io/library/mysql:8.0  mysqld                9 hours ago  Up 9 hours (starting)  0.0.0.0:3307->3306/tcp, 33060/tcp  benning-mysql
+1b5df25547de  localhost/prg_flask:latest   python -m gunicor...  9 hours ago  Created                0.0.0.0:5000->5000/tcp             benning-flask
+CONTAINER ID  IMAGE                        COMMAND               CREATED        STATUS                   PORTS                              NAMES
+d3e4a364012b  docker.io/library/mysql:8.0  mysqld                2 minutes ago  Up 2 minutes (starting)  0.0.0.0:3307->3306/tcp, 33060/tcp  benning-mysql
+995c150af979  localhost/prg_flask:latest   python -m gunicor...  2 minutes ago  Up 1 second              0.0.0.0:5000->5000/tcp             benning-flask
+CONTAINER ID  IMAGE                        COMMAND               CREATED        STATUS                 PORTS                              NAMES
+0f27125d462b  docker.io/library/mysql:8.0  mysqld                2 minutes ago  Up 2 minutes           0.0.0.0:3307->3306/tcp, 33060/tcp  benning-mysql
+02ea05cfc379  localhost/prg_flask:latest   python -m gunicor...  2 minutes ago  Up Less than a second  0.0.0.0:5000->5000/tcp             benning-flask

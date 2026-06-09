@@ -1,38 +1,65 @@
-"""Application Settings"""
-import os
-from dotenv import load_dotenv
+"""
+ANCHOR: Application Settings
+Konfigurationsmodul für die DGUV3 Flask-Anwendung.
 
-load_dotenv()
+Dieses Modul stellt `get_config()` bereit, damit `src.main` die Anwendungskonfiguration
+importieren kann. Die Werte werden aus den Container-Umgebungsvariablen gelesen.
+"""
+
+import os
+
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
-    DEBUG = os.getenv('FLASK_DEBUG', False)
-    DB_HOST = os.getenv('DB_HOST', 'localhost')
-    DB_PORT = int(os.getenv('DB_PORT', 3306))
-    DB_USER = os.getenv('DB_USER', 'benning')
-    DB_PASSWORD = os.getenv('DB_PASSWORD', 'benning')
-    DB_NAME = os.getenv('DB_NAME', 'benning_device_manager')
-    UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', 'static/uploads')
-    MAX_CONTENT_LENGTH = int(os.getenv('MAX_CONTENT_LENGTH', 10485760))
+    """SECTION: Basiskonfiguration für Flask und Datenbank."""
+
+    SECRET_KEY = os.getenv("SECRET_KEY", "dev-change-me")
+    FLASK_ENV = os.getenv("FLASK_ENV", "production")
+    DEBUG = os.getenv("FLASK_DEBUG", "0").lower() in {"1", "true", "yes", "on"}
+    TESTING = False
+
+    DB_HOST = os.getenv("DB_HOST", "mysql")
+    DB_PORT = int(os.getenv("DB_PORT", "3306"))
+    DB_USER = os.getenv("DB_USER", "dguv3")
+    DB_PASSWORD = os.getenv("DB_PASSWORD", "change_me_dguv3")
+    DB_NAME = os.getenv("DB_NAME", "dguv3_db")
+
+    DEFAULT_CUSTOMER = os.getenv("DEFAULT_CUSTOMER", "TSS")
+
+    # NOTE: SQLAlchemy wird hier nicht zwingend verwendet, ist aber für Flask-Erweiterungen hilfreich.
+    SQLALCHEMY_DATABASE_URI = (
+        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
+    )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 class DevelopmentConfig(Config):
-    DEBUG = True
-    TESTING = False
+    """SECTION: Entwicklungskonfiguration."""
 
-class TestingConfig(Config):
     DEBUG = True
-    TESTING = True
-    DB_NAME = 'benning_device_manager_test'
+    FLASK_ENV = "development"
+
 
 class ProductionConfig(Config):
+    """SECTION: Produktionskonfiguration."""
+
     DEBUG = False
-    TESTING = False
+    FLASK_ENV = "production"
+
+
+class TestingConfig(Config):
+    """SECTION: Testkonfiguration."""
+
+    TESTING = True
+    DEBUG = True
+    FLASK_ENV = "testing"
+
 
 def get_config():
-    env = os.getenv('FLASK_ENV', 'development')
-    if env == 'testing':
-        return TestingConfig()
-    elif env == 'production':
-        return ProductionConfig()
-    else:
-        return DevelopmentConfig()
+    """Gibt anhand von FLASK_ENV die passende Konfigurationsklasse zurück."""
+
+    env = os.getenv("FLASK_ENV", "production").lower()
+    if env in {"dev", "development"}:
+        return DevelopmentConfig
+    if env in {"test", "testing"}:
+        return TestingConfig
+    return ProductionConfig
