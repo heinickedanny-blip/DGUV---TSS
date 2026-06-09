@@ -1,0 +1,396 @@
+.
+├── benning_db.sh
+├── benning_schema_WITH_CUSTOMER.sql
+├── container_flask.txt
+├── db_operation.txt
+├── device_repo.txt
+├── device.txt
+├── Dockerfile.benning
+├── .env
+├── env.template
+├── errors.txt
+├── health_checks.txt
+├── logs.txt
+├── mapping_test.sh
+├── podman-compose.yml
+├── qr_code_generator.py
+├── requirements_hexagon.txt
+├── schema.sql
+├── src
+│   ├── adapters
+│   ├── config
+│   ├── core
+│   ├── __init__.py
+│   ├── main.py
+│   └── __pycache__
+├── static
+│   ├── css
+│   └── uploads
+├── structure.txt
+├── templates
+│   ├── base.html
+│   ├── device_detail.html
+│   ├── devices.html
+│   ├── error.html
+│   ├── index.html
+│   ├── quick_add.html
+│   ├── usbc_inspection.html
+│   └── usbc_inspections_list.html
+├── tests
+│   ├── conftest.py
+│   ├── fixtures
+│   ├── __init__.py
+│   ├── integration
+│   ├── __pycache__
+│   ├── test_device_api_integration.py
+│   ├── test_device_domain.py
+│   ├── test_device_usecases.py
+│   ├── test_mysql_device_repository.py
+│   └── unit
+└── Tools
+    ├── install_benning_podman_FINAL.sh
+    ├── install_benning_podman.sh
+    └── install_podman_cachyos.sh
+
+17 directories, 36 files
+.
+├── benning_db.sh
+├── comprehensive_tests.sh
+├── container_flask.txt
+├── coverage_results.log
+├── db_operation.txt
+├── device_repo.txt
+├── device.txt
+├── Dockerfile.benning
+├── .env
+├── env.template
+├── errors.txt
+├── favicon.ico
+├── fix_db.sh
+├── fix.sh
+├── health_checks.txt
+├── integrate_response_handler.sh
+├── logs.txt
+├── mapping_test.sh
+├── podman-compose.yml
+├── qr_code_generator.py
+├── requirements_hexagon.txt
+├── schema.sql
+├── src
+│   ├── adapters
+│   ├── config
+│   ├── core
+│   ├── __init__.py
+│   ├── main.py
+│   ├── main.py.backup
+│   └── __pycache__
+├── static
+│   ├── css
+│   └── uploads
+├── structure.txt
+├── templates
+│   ├── base.html
+│   ├── device_detail.html
+│   ├── devices.html
+│   ├── error.html
+│   ├── index.html
+│   ├── quick_add.html
+│   ├── usbc_inspection.html
+│   └── usbc_inspections_list.html
+├── test_results.log
+├── tests
+│   ├── conftest.py
+│   ├── fixtures
+│   ├── __init__.py
+│   ├── integration
+│   ├── __pycache__
+│   ├── test_device_api_integration.py
+│   ├── test_device_domain.py
+│   ├── test_device_routes_comprehensive.py
+│   ├── test_device_usecases.py
+│   ├── test_mysql_device_repository.py
+│   └── unit
+└── Tools
+    ├── install_benning_podman_FINAL.sh
+    ├── install_benning_podman.sh
+    └── install_podman_cachyos.sh
+
+16 directories, 45 files
+.
+├── benning_db.sh
+├── comprehensive_tests.sh
+├── container_flask.txt
+├── coverage_results.log
+├── db_operation.txt
+├── device_repo.txt
+├── device.txt
+├── Dockerfile.benning
+├── .env
+├── env.template
+├── error_logs.txt
+├── errors.txt
+├── favicon.ico
+├── fix_db.sh
+├── fix.sh
+├── health_checks.txt
+├── integrate_response_handler.sh
+├── logs.txt
+├── mapping_test.sh
+├── podman-compose.yml
+├── qr_code_generator.py
+├── requirements_hexagon.txt
+├── reset_db.sh
+├── restart-container.sh
+├── schema.sql
+├── src
+│   ├── adapters
+│   ├── config
+│   ├── core
+│   ├── __init__.py
+│   ├── main.py
+│   ├── main.py.backup
+│   └── __pycache__
+├── static
+│   ├── css
+│   └── uploads
+├── structure.txt
+├── templates
+│   ├── base.html
+│   ├── device_detail.html
+│   ├── devices.html
+│   ├── error.html
+│   ├── index.html
+│   ├── quick_add.html
+│   ├── schutzklasse.html
+│   ├── usbc_inspection.html
+│   └── usbc_inspections_list.html
+├── test_devices.sh
+├── test_results.log
+├── tests
+│   ├── conftest.py
+│   ├── fixtures
+│   ├── __init__.py
+│   ├── integration
+│   ├── __pycache__
+│   ├── test_device_api_integration.py
+│   ├── test_device_domain.py
+│   ├── test_device_routes_comprehensive.py
+│   ├── test_device_usecases.py
+│   ├── test_mysql_device_repository.py
+│   └── unit
+└── Tools
+    ├── install_benning_podman_FINAL.sh
+    ├── install_benning_podman.sh
+    └── install_podman_cachyos.sh
+
+16 directories, 50 files
+.
+├── device.txt
+├── Dockerfile.benning
+├── .env
+├── env.template
+├── podman-compose.yml
+├── qr_code_generator.py
+├── requirements_hexagon.txt
+├── schema.sql
+├── src
+│   ├── adapters
+│   │   ├── file_storage
+│   │   ├── persistence
+│   │   ├── qr_generation
+│   │   ├── services
+│   │   └── web
+│   ├── config
+│   │   ├── dependencies.py
+│   │   ├── dependencies.py.backup
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   └── settings.py
+│   ├── core
+│   │   ├── domain
+│   │   ├── ports
+│   │   └── usecases
+│   ├── __init__.py
+│   ├── main.py
+│   ├── main.py.backup
+│   └── __pycache__
+│       ├── __init__.cpython-314.opt-2.pyc
+│       ├── __init__.cpython-314.pyc
+│       ├── main.cpython-314.opt-2.pyc
+│       └── main.cpython-314.pyc
+├── static
+│   ├── css
+│   │   └── style.css
+│   └── uploads
+│       ├── schutzklasse1.png
+│       └── schutzklasse2.png
+├── structure.txt
+├── templates
+│   ├── base.html
+│   ├── device_detail.html
+│   ├── devices.html
+│   ├── error.html
+│   ├── index.html
+│   ├── quick_add.html
+│   ├── schutzklasse.html
+│   ├── usbc_inspection.html
+│   └── usbc_inspections_list.html
+├── test_dguv3_backend_II.sh
+├── test_dguv3_devices.sh
+└── tests
+    ├── conftest.py
+    ├── fixtures
+    │   └── __init__.py
+    ├── __init__.py
+    ├── integration
+    │   ├── __init__.py
+    │   ├── repositories
+    │   └── routes
+    ├── __pycache__
+    │   ├── conftest.cpython-314-pytest-7.4.3.pyc
+    │   ├── __init__.cpython-314.pyc
+    │   ├── test_device_api_integration.cpython-314-pytest-7.4.3.pyc
+    │   ├── test_device_domain.cpython-314-pytest-7.4.3.pyc
+    │   ├── test_device_usecases.cpython-314-pytest-7.4.3.pyc
+    │   └── test_mysql_device_repository.cpython-314-pytest-7.4.3.pyc
+    ├── test_device_api_integration.py
+    ├── test_device_domain.py
+    ├── test_device_routes_comprehensive.py
+    ├── test_device_usecases.py
+    ├── test_mysql_device_repository.py
+    └── unit
+        ├── adapters
+        ├── domain
+        ├── __init__.py
+        ├── __pycache__
+        └── usecases
+
+30 directories, 50 files
+.
+├── ...
+│   └── static
+│       └── uploads
+├── backend_datetime_fix.py
+├── backup_before_fix.sh
+├── container_logs.txt
+├── device_routes_fixed.py
+├── device.txt
+├── Dockerfile.benning
+├── .env
+├── .env.backup
+├── env.template
+├── error_logs.txt
+├── fix_datetime_column.sql
+├── fix_upload_permissions.sh
+├── init-db
+├── photo_upload_backend.py
+├── podman-compose copy.backup
+├── podman-compose.yml
+├── qr_code_generator.py
+├── requirements_hexagon.txt
+├── schema.sql
+├── schema.sql.backup
+├── src
+│   ├── adapters
+│   │   ├── file_storage
+│   │   ├── persistence
+│   │   ├── qr_generation
+│   │   ├── services
+│   │   └── web
+│   ├── config
+│   │   ├── dependencies.py
+│   │   ├── dependencies.py.backup
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   └── settings.py
+│   ├── core
+│   │   ├── domain
+│   │   ├── ports
+│   │   └── usecases
+│   ├── __init__.py
+│   ├── main.py
+│   ├── main.py.backup
+│   └── __pycache__
+│       ├── __init__.cpython-314.opt-2.pyc
+│       ├── __init__.cpython-314.pyc
+│       ├── main.cpython-314.opt-2.pyc
+│       └── main.cpython-314.pyc
+├── static
+│   ├── css
+│   │   ├── all.css
+│   │   ├── all.min.css
+│   │   ├── brands.css
+│   │   ├── brands.min.css
+│   │   ├── fontawesome.css
+│   │   ├── fontawesome.min.css
+│   │   ├── regular.css
+│   │   ├── regular.min.css
+│   │   ├── solid.css
+│   │   ├── solid.min.css
+│   │   ├── style.css
+│   │   ├── svg.css
+│   │   ├── svg.min.css
+│   │   ├── svg-with-js.css
+│   │   ├── svg-with-js.min.css
+│   │   ├── v4-font-face.css
+│   │   ├── v4-font-face.min.css
+│   │   ├── v4-shims.css
+│   │   ├── v4-shims.min.css
+│   │   ├── v5-font-face.css
+│   │   └── v5-font-face.min.css
+│   ├── uploads
+│   │   ├── device_photos
+│   │   ├── schutzklasse1.png
+│   │   └── schutzklasse2.png
+│   └── webfonts
+│       ├── fa-brands-400.woff2
+│       ├── fa-regular-400.woff2
+│       ├── fa-solid-900.woff2
+│       └── fa-v4compatibility.woff2
+├── structure.txt
+├── templates
+│   ├── base.html
+│   ├── device_detail.html
+│   ├── device-print.html
+│   ├── devices.html
+│   ├── error.html
+│   ├── Geräteliste - Druckansicht.pdf
+│   ├── Geräteliste - Druckansicht - v2.pdf
+│   ├── Geräteliste - Druckansicht - v3.pdf
+│   ├── .gitignore
+│   ├── index.html
+│   ├── KMU-Adresse.html
+│   ├── quick_add.html
+│   ├── quick_add.html.backup
+│   ├── schutzklasse.html
+│   ├── usbc_inspection.html
+│   └── usbc_inspections_list.html
+└── tests
+    ├── conftest.py
+    ├── fixtures
+    │   └── __init__.py
+    ├── __init__.py
+    ├── integration
+    │   ├── __init__.py
+    │   ├── repositories
+    │   └── routes
+    ├── __pycache__
+    │   ├── conftest.cpython-314-pytest-7.4.3.pyc
+    │   ├── __init__.cpython-314.pyc
+    │   ├── test_device_api_integration.cpython-314-pytest-7.4.3.pyc
+    │   ├── test_device_domain.cpython-314-pytest-7.4.3.pyc
+    │   ├── test_device_usecases.cpython-314-pytest-7.4.3.pyc
+    │   └── test_mysql_device_repository.cpython-314-pytest-7.4.3.pyc
+    ├── test_device_api_integration.py
+    ├── test_device_domain.py
+    ├── test_device_routes_comprehensive.py
+    ├── test_device_usecases.py
+    ├── test_mysql_device_repository.py
+    └── unit
+        ├── adapters
+        ├── domain
+        ├── __init__.py
+        ├── __pycache__
+        └── usecases
+
+36 directories, 90 files

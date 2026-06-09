@@ -1,4 +1,3 @@
-import os
 import sys
 from pathlib import Path
 from datetime import datetime, timedelta
@@ -237,27 +236,14 @@ def create_app():
             return jsonify({'status': 'success'})
         
         try:
-            # Hole nächste ID für den in .env konfigurierten Standardkunden
-            default_customer = os.getenv('DEFAULT_CUSTOMER', 'TSS').strip() or 'TSS'
-            next_id = container.device_repository.get_next_customer_device_id(default_customer)
+            # Hole nächste ID für Standard-Kunden
+            next_id = container.device_repository.get_next_customer_device_id('Default')
             # Generiere URL zur USB-C Inspektionen Seite
             usbc_inspections_url = url_for('usbc_inspections')
-            return render_template(
-                'quick_add.html',
-                next_id=next_id,
-                default_customer=default_customer,
-                usbc_inspections_url=usbc_inspections_url
-            )
+            return render_template('quick_add.html', next_id=next_id, usbc_inspections_url=usbc_inspections_url)
         except Exception as e:
-            default_customer = os.getenv('DEFAULT_CUSTOMER', 'TSS').strip() or 'TSS'
             usbc_inspections_url = url_for('usbc_inspections')
-            return render_template(
-                'quick_add.html',
-                next_id=f'{default_customer}-00001',
-                default_customer=default_customer,
-                error=str(e),
-                usbc_inspections_url=usbc_inspections_url
-            )
+            return render_template('quick_add.html', next_id='Default-00001', error=str(e), usbc_inspections_url=usbc_inspections_url)
 
     # ========================================================================
     # ANCHOR: GERÄT HINZUFÜGEN (API ENDPOINT) - FIXED

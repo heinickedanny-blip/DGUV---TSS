@@ -1,0 +1,129 @@
+version: '3.8'
+
+# ============================================================================
+# Benning Device Manager - Podman Compose (Aktualisiert für miro_db)
+# Optimiert für CachyOS
+# ============================================================================
+
+services:
+  # ANCHOR: MySQL Database
+  mysql:
+    image: docker.io/library/mysql:8.0
+    container_name: benning-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_NAME:-miro_db}
+      MYSQL_USER: ${DB_USER:-miro}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-miro}
+      MYSQL_INITDB_SKIP_TZINFO: "yes"
+    ports:
+      - "${DB_PORT:-3307}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init-db:/docker-entrypoint-initdb.d:ro
+    networks:
+      - benning-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ANCHOR: Flask Application
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile.benning
+    image: localhost/prg_flask:latest
+    container_name: benning-flask
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      FLASK_APP: src.main
+      FLASK_ENV: ${FLASK_ENV:-production}
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: ${DB_USER:-miro}
+      DB_PASSWORD: ${DB_PASSWORD:-miro}
+      DB_NAME: ${DB_NAME:-miro_db}
+      PYTHONUNBUFFERED: "1"
+      PYTHONOPTIMIZE: "2"
+    ports:
+      - "${FLASK_PORT:-5000}:5000"
+    volumes:
+      - ./:/app:ro
+      - ./static:/app/static
+      - ./templates:/app/templates
+    networks:
+      - benning-network
+
+  # ANCHOR: Nginx Reverse Proxy (Optional)
+  nginx:
+    image: docker.io/library/nginx:alpine
+    container_name: benning-nginx
+    restart: unless-stopped
+    depends_on:
+      - flask
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    networks:
+      - benning-network
+    profiles:
+      - production
+
+# ANCHOR: Volumes
+volumes:
+  mysql_data:
+    driver: local
+
+# ANCHOR: Networks
+networks:
+  benning-network:
+    driver: bridge
+fcef96d89de8 2026-02-19 10:47:03+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.45-1.el9 started.
+fcef96d89de8 2026-02-19 10:47:03+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+fcef96d89de8 2026-02-19 10:47:03+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.45-1.el9 started.
+fcef96d89de8 '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+77936306e925 ✓ LoggerService initialized (stdout/stderr mode)
+77936306e925 {"timestamp": "2026-02-19T10:47:14.299790", "level": "INFO", "message": "Initializing repositories", "db_host": "mysql", "db_port": 3306, "db_name": "miro_db"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.299840", "level": "INFO", "message": "MySQLDeviceRepository initialized", "host": "mysql"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.299852", "level": "INFO", "message": "Testing database connection..."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.316845", "level": "DB_OPERATION", "operation": "SELECT", "table": "devices", "result": "success", "duration_ms": 16.98}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.317791", "level": "INFO", "message": "Database connection successful. Found 82 devices."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.317820", "level": "INFO", "message": "Device repository initialized successfully"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.317842", "level": "INFO", "message": "Initializing use cases"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.317859", "level": "INFO", "message": "All use cases initialized successfully"}
+77936306e925 ✓ LoggerService initialized (stdout/stderr mode)
+77936306e925 {"timestamp": "2026-02-19T10:47:14.334899", "level": "INFO", "message": "Initializing repositories", "db_host": "mysql", "db_port": 3306, "db_name": "miro_db"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.334972", "level": "INFO", "message": "MySQLDeviceRepository initialized", "host": "mysql"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.334983", "level": "INFO", "message": "Testing database connection..."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.346291", "level": "DB_OPERATION", "operation": "SELECT", "table": "devices", "result": "success", "duration_ms": 11.3}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.347085", "level": "INFO", "message": "Database connection successful. Found 82 devices."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.347114", "level": "INFO", "message": "Device repository initialized successfully"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.347135", "level": "INFO", "message": "Initializing use cases"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.347151", "level": "INFO", "message": "All use cases initialized successfully"}
+77936306e925 ✓ LoggerService initialized (stdout/stderr mode)
+77936306e925 {"timestamp": "2026-02-19T10:47:14.421192", "level": "INFO", "message": "Initializing repositories", "db_host": "mysql", "db_port": 3306, "db_name": "miro_db"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.421258", "level": "INFO", "message": "MySQLDeviceRepository initialized", "host": "mysql"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.421268", "level": "INFO", "message": "Testing database connection..."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.432596", "level": "DB_OPERATION", "operation": "SELECT", "table": "devices", "result": "success", "duration_ms": 11.32}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.433305", "level": "INFO", "message": "Database connection successful. Found 82 devices."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.433327", "level": "INFO", "message": "Device repository initialized successfully"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.433346", "level": "INFO", "message": "Initializing use cases"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.433361", "level": "INFO", "message": "All use cases initialized successfully"}
+77936306e925 ✓ LoggerService initialized (stdout/stderr mode)
+77936306e925 {"timestamp": "2026-02-19T10:47:14.477601", "level": "INFO", "message": "Initializing repositories", "db_host": "mysql", "db_port": 3306, "db_name": "miro_db"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.477643", "level": "INFO", "message": "MySQLDeviceRepository initialized", "host": "mysql"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.477652", "level": "INFO", "message": "Testing database connection..."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.488137", "level": "DB_OPERATION", "operation": "SELECT", "table": "devices", "result": "success", "duration_ms": 10.47}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.488814", "level": "INFO", "message": "Database connection successful. Found 82 devices."}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.488831", "level": "INFO", "message": "Device repository initialized successfully"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.488848", "level": "INFO", "message": "Initializing use cases"}
+77936306e925 {"timestamp": "2026-02-19T10:47:14.488863", "level": "INFO", "message": "All use cases initialized successfully"}

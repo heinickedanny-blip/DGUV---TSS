@@ -1,0 +1,593 @@
+{% extends "base.html" %}
+
+{% block title %}{{ device.name }} - Benning Device Manager{% endblock %}
+
+{% block content %}
+<div class="device-detail">
+    <div class="detail-header">
+        <h2>🔧 {{ device.name }}</h2>
+        <span class="badge badge-{{ device.status }}">{{ device.status }}</span>
+    </div>
+    
+    <div class="detail-grid">
+        <div class="detail-card">
+            <h3>Geräteinformationen</h3>
+            <dl>
+                <dt>Geräte-ID:</dt><dd><strong>{{ device.customer_device_id }}</strong></dd>
+                <dt>Kunde:</dt><dd>{{ device.customer }}</dd>
+                <dt>Name:</dt><dd>{{ device.name }}</dd>
+                <dt>Typ:</dt><dd>{{ device.type }}</dd>
+                <dt>Standort:</dt><dd>{{ device.location }}</dd>
+                <dt>Hersteller:</dt><dd>{{ device.manufacturer }}</dd>
+                <dt>Seriennummer:</dt><dd>{{ device.serial_number }}</dd>
+                <dt>Kaufdatum:</dt><dd>{{ device.purchase_date }}</dd>
+                <dt>Status:</dt><dd><span class="badge badge-{{ device.status }}">{{ device.status }}</span></dd>
+            </dl>
+        </div>
+        
+        <div class="detail-card">
+            <h3>Prüfstatus</h3>
+            <dl>
+                <dt>Letzte Prüfung:</dt><dd>{{ device.last_inspection or 'Keine' }}</dd>
+                <dt>Nächste Prüfung:</dt><dd>{{ device.next_inspection or 'Nicht geplant' }}</dd>
+            </dl>
+            
+            <div class="qr-section">
+                <h3>QR-Code</h3>
+                {% if device.qr_code %}
+                    <img src="{{ device.qr_code }}" alt="QR-Code" class="qr-code-large" title="{{ device.customer_device_id }}" />
+                    <p class="qr-info">{{ device.customer_device_id }}</p>
+                {% else %}
+                    <p class="text-muted">QR-Code konnte nicht generiert werden</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- DGUV3 Prüfwerte -->
+    <div class="detail-card" style="grid-column: 1 / -1;">
+        <h3>⚡ DGUV3 Prüfwerte</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <!-- Schutzleiterwiderstand -->
+            <div class="dguv3-value">
+                <dt>Schutzleiterwiderstand (R<sub>PE</sub>):</dt>
+                <dd>
+                    {% if device.r_pe is not none %}
+                        {% if device.r_pe < 0.3 %}
+                            <span class="badge badge-active">✅ {{ "%.3f"|format(device.r_pe) }} Ω</span>
+                        {% else %}
+                            <span class="badge badge-failed">⚠️ {{ "%.3f"|format(device.r_pe) }} Ω</span>
+                        {% endif %}
+                        <small style="display: block; margin-top: 5px; color: #666;">Grenzwert: &lt; 0,3 Ω</small>
+                    {% else %}
+                        <span class="text-muted">Nicht erfasst</span>
+                    {% endif %}
+                </dd>
+            </div>
+            
+            <!-- Isolationswiderstand -->
+            <div class="dguv3-value">
+                <dt>Isolationswiderstand (R<sub>ISO</sub>):</dt>
+                <dd>
+                    {% if device.r_iso is not none %}
+                        {% if device.r_iso > 1.0 %}
+                            <span class="badge badge-active">✅ {{ "%.3f"|format(device.r_iso) }} MΩ</span>
+                        {% else %}
+                            <span class="badge badge-failed">⚠️ {{ "%.3f"|format(device.r_iso) }} MΩ</span>
+                        {% endif %}
+                        <small style="display: block; margin-top: 5px; color: #666;">Grenzwert: &gt; 1,0 MΩ</small>
+                    {% else %}
+                        <span class="text-muted">Nicht erfasst</span>
+                    {% endif %}
+                </dd>
+            </div>
+            
+            <!-- Schutzleiterstrom -->
+            <div class="dguv3-value">
+                <dt>Schutzleiterstrom (I<sub>PE</sub>):</dt>
+                <dd>
+                    {% if device.i_pe is not none %}
+                        {% if device.i_pe < 3.5 %}
+                            <span class="badge badge-active">✅ {{ "%.3f"|format(device.i_pe) }} mA</span>
+                        {% else %}
+                            <span class="badge badge-failed">⚠️ {{ "%.3f"|format(device.i_pe) }} mA</span>
+                        {% endif %}
+                        <small style="display: block; margin-top: 5px; color: #666;">Grenzwert: &lt; 3,5 mA</small>
+                    {% else %}
+                        <span class="text-muted">Nicht erfasst</span>
+                    {% endif %}
+                </dd>
+            </div>
+            
+            <!-- Berührungsstrom -->
+            <div class="dguv3-value">
+                <dt>Berührungsstrom (I<sub>B</sub>):</dt>
+                <dd>
+                    {% if device.i_b is not none %}
+                        {% if device.i_b < 0.5 %}
+                            <span class="badge badge-active">✅ {{ "%.3f"|format(device.i_b) }} mA</span>
+                        {% else %}
+                            <span class="badge badge-failed">⚠️ {{ "%.3f"|format(device.i_b) }} mA</span>
+                        {% endif %}
+                        <small style="display: block; margin-top: 5px; color: #666;">Grenzwert: &lt; 0,5 mA</small>
+                    {% else %}
+                        <span class="text-muted">Nicht erfasst</span>
+                    {% endif %}
+                </dd>
+            </div>
+        </div>
+    </div>
+    
+    {% if device.notes %}
+    <div class="detail-card">
+        <h3>📝 Notizen</h3>
+        <p>{{ device.notes }}</p>
+    </div>
+    {% endif %}
+    
+    <div class="inspections-section">
+        <h3>📋 Prüfhistorie</h3>
+        {% if inspections %}
+        <table class="device-table">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Prüfer</th>
+                    <th>Ergebnis</th>
+                    <th>Notizen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inspection in inspections %}
+                <tr>
+                    <td>{{ inspection.inspection_date }}</td>
+                    <td>{{ inspection.inspector_name }}</td>
+                    <td><span class="badge badge-{{ inspection.result }}">{{ inspection.result }}</span></td>
+                    <td>{{ inspection.notes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-muted">Keine Prüfungen vorhanden.</p>
+        {% endif %}
+    </div>
+    
+    <div class="button-group">
+        <button onclick="history.back()" class="btn btn-secondary">← Zurück</button>
+        <a href="{{ url_for('devices') }}" class="btn btn-secondary">📋 Zur Liste</a>
+        <button onclick="openDeleteModal()" class="btn btn-danger">🗑️ Löschen</button>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="delete-modal" style="display: none;">
+    <div class="delete-modal-content">
+        <div class="delete-modal-header">
+            <h2>⚠️ Gerät löschen?</h2>
+            <button class="delete-modal-close" onclick="closeDeleteModal()">&times;</button>
+        </div>
+        <div class="delete-modal-body">
+            <p><strong>Gerät:</strong> {{ device.name }} ({{ device.customer_device_id }})</p>
+            <p class="warning-text">⚠️ Diese Aktion kann nicht rückgängig gemacht werden. Alle Inspektionsdaten werden ebenfalls gelöscht.</p>
+            <p>Möchtest du dieses Gerät wirklich löschen?</p>
+        </div>
+        <div class="delete-modal-footer">
+            <button class="btn btn-secondary" onclick="closeDeleteModal()">Abbrechen</button>
+            <button class="btn btn-danger" onclick="confirmDelete()">🗑️ Ja, löschen</button>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Success Modal -->
+<div id="deleteSuccessModal" class="delete-modal" style="display: none;">
+    <div class="delete-modal-content">
+        <div class="delete-modal-header success">
+            <h2>✅ Gerät gelöscht</h2>
+        </div>
+        <div class="delete-modal-body">
+            <p>Das Gerät <strong>{{ device.name }}</strong> wurde erfolgreich gelöscht.</p>
+            <p>Du wirst in Kürze zur Geräteliste weitergeleitet...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Error Modal -->
+<div id="deleteErrorModal" class="delete-modal" style="display: none;">
+    <div class="delete-modal-content">
+        <div class="delete-modal-header error">
+            <h2>❌ Fehler beim Löschen</h2>
+            <button class="delete-modal-close" onclick="closeDeleteErrorModal()">&times;</button>
+        </div>
+        <div class="delete-modal-body">
+            <p id="errorMessage"></p>
+        </div>
+        <div class="delete-modal-footer">
+            <button class="btn btn-primary" onclick="closeDeleteErrorModal()">OK</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.device-detail {
+    padding: 20px;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.detail-header h2 {
+    margin: 0;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.detail-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.detail-card dl {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 10px 20px;
+}
+
+.detail-card dt {
+    font-weight: 600;
+    color: #555;
+}
+
+.detail-card dd {
+    margin: 0;
+    color: #333;
+}
+
+.qr-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.qr-section h3 {
+    margin-top: 0;
+    border: none;
+}
+
+.qr-code-large {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #ddd;
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+}
+
+.qr-info {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge-inactive {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.badge-maintenance {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-failed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.dguv3-value dt {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.dguv3-value dd {
+    margin: 0;
+}
+
+.inspections-section {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.inspections-section h3 {
+    margin-top: 0;
+}
+
+.device-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.device-table thead {
+    background-color: #f8f9fa;
+}
+
+.device-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.device-table td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.device-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.text-muted {
+    color: #999;
+}
+
+/* Delete Modal Styles */
+.delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.delete-modal-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.delete-modal-header {
+    background-color: #dc3545;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.delete-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.delete-modal-header.success {
+    background-color: #28a745;
+}
+
+.delete-modal-header.error {
+    background-color: #dc3545;
+}
+
+.delete-modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.delete-modal-body {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.delete-modal-body p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.warning-text {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 12px;
+    border-radius: 4px;
+    color: #856404;
+    margin: 15px 0;
+}
+
+.delete-modal-footer {
+    padding: 15px 20px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-radius: 0 0 8px 8px;
+}
+
+.delete-modal-footer button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+</style>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const deviceId = {{ device.id }};
+
+function openDeleteModal() {
+    document.getElementById('deleteModal').style.display = 'flex';
+}
+
+function closeDeleteModal() {
+    document.getElementById('deleteModal').style.display = 'none';
+}
+
+function closeDeleteErrorModal() {
+    document.getElementById('deleteErrorModal').style.display = 'none';
+}
+
+async function confirmDelete() {
+    try {
+        closeDeleteModal();
+        
+        // Sende DELETE-Request an Backend
+        const response = await fetch(`/device/${deviceId}/delete`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            // Erfolg - Zeige Success Modal
+            document.getElementById('deleteSuccessModal').style.display = 'flex';
+            
+            // Leite nach 2 Sekunden zur Geräteliste um
+            setTimeout(() => {
+                window.location.href = '{{ url_for("devices") }}';
+            }, 2000);
+        } else {
+            // Fehler - Zeige Error Modal
+            document.getElementById('errorMessage').textContent = 
+                result.message || 'Fehler beim Löschen des Geräts';
+            document.getElementById('deleteErrorModal').style.display = 'flex';
+        }
+    } catch (error) {
+        console.error('Fehler:', error);
+        document.getElementById('errorMessage').textContent = 
+            'Ein Fehler ist aufgetreten: ' + error.message;
+        document.getElementById('deleteErrorModal').style.display = 'flex';
+    }
+}
+
+// Schließe Modal wenn außerhalb geklickt wird
+document.addEventListener('click', (e) => {
+    const deleteModal = document.getElementById('deleteModal');
+    if (e.target === deleteModal) {
+        closeDeleteModal();
+    }
+});
+</script>
+{% endblock %}

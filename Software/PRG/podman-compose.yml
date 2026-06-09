@@ -1,21 +1,8 @@
 version: '3.8'
 
 # ============================================================================
-# Benning Device Manager - Podman Compose / Docker Compose
-# Parametrisierte DGUV3-Datenbank für CachyOS / Arch / Podman
-# ============================================================================
-#
-# NOTE: Für ein neues MySQL-Root-Passwort muss ein neues/leeres Volume verwendet
-# werden, z. B. per .env:
-#
-#   MYSQL_VOLUME_NAME=prg_mysql_data_tss_bierwagen
-#   DB_ROOT_PASSWORD=NeuesRootPasswort
-#   DB_NAME=db_tss_bierwagen
-#   DB_USER=tss_user
-#   DB_PASSWORD=NeuesUserPasswort
-#
-# Ein bereits initialisiertes MySQL-Volume übernimmt spätere Änderungen an
-# DB_ROOT_PASSWORD nicht automatisch.
+# Benning Device Manager - Podman Compose (Aktualisiert für miro_db)
+# Optimiert für CachyOS
 # ============================================================================
 
 services:
@@ -26,17 +13,22 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
-      MYSQL_DATABASE: ${DB_NAME:-db_dguv3}
-      MYSQL_USER: ${DB_USER:-admin}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-admin}
+      MYSQL_DATABASE: ${DB_NAME:-miro_db}
+      MYSQL_USER: ${DB_USER:-miro}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-miro}
       MYSQL_INITDB_SKIP_TZINFO: "yes"
     ports:
-      - "${DB_HOST_PORT:-3307}:3306"
+      - "${DB_PORT:-3307}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init-db:/docker-entrypoint-initdb.d:ro
     networks:
       - benning-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # ANCHOR: Flask Application
   flask:
@@ -46,20 +38,17 @@ services:
     image: localhost/prg_flask:latest
     container_name: benning-flask
     restart: unless-stopped
-    # NOTE: Podman Compose behandelt Healthcheck-Bedingungen je nach Version
-    # uneinheitlich. Das Startskript wartet bereits aktiv auf MySQL; deshalb
-    # reicht hier eine einfache Startabhängigkeit.
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     environment:
       FLASK_APP: src.main
       FLASK_ENV: ${FLASK_ENV:-production}
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_USER: ${DB_USER:-dguv3}
-      DB_PASSWORD: ${DB_PASSWORD:-change_me_dguv3}
-      DB_NAME: ${DB_NAME:-dguv3_db}
-      DEFAULT_CUSTOMER: ${DEFAULT_CUSTOMER:-TSS}
+      DB_USER: ${DB_USER:-miro}
+      DB_PASSWORD: ${DB_PASSWORD:-miro}
+      DB_NAME: ${DB_NAME:-miro_db}
       PYTHONUNBUFFERED: "1"
       PYTHONOPTIMIZE: "2"
     ports:
@@ -71,7 +60,7 @@ services:
     networks:
       - benning-network
 
-  # ANCHOR: Nginx Reverse Proxy Optional
+  # ANCHOR: Nginx Reverse Proxy (Optional)
   nginx:
     image: docker.io/library/nginx:alpine
     container_name: benning-nginx
@@ -79,8 +68,8 @@ services:
     depends_on:
       - flask
     ports:
-      - "${NGINX_HTTP_PORT:-80}:80"
-      - "${NGINX_HTTPS_PORT:-443}:443"
+      - "80:80"
+      - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./ssl:/etc/nginx/ssl:ro
@@ -92,7 +81,6 @@ services:
 # ANCHOR: Volumes
 volumes:
   mysql_data:
-    name: ${MYSQL_VOLUME_NAME:-prg_mysql_data}
     driver: local
 
 # ANCHOR: Networks

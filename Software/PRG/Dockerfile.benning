@@ -1,12 +1,13 @@
 # ============================================================================
 # Benning Device Manager - Dockerfile
-# Optimiert für Podman/CachyOS-Runtime
+# Optimiert für CachyOS mit Podman
 # ============================================================================
 
 FROM python:3.11-slim
 
 WORKDIR /app
 
+# ANCHOR: Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     g++ \
@@ -17,8 +18,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# ANCHOR: Copy requirements
 COPY requirements_hexagon.txt .
 
+# ANCHOR: Install Python dependencies with CachyOS optimizations
 ENV PYTHONOPTIMIZE=2 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1
@@ -26,22 +29,28 @@ ENV PYTHONOPTIMIZE=2 \
 RUN pip install --upgrade pip setuptools wheel && \
     pip install -r requirements_hexagon.txt
 
+# ANCHOR: Copy application code
 COPY . .
 
+# ANCHOR: Create non-root user for security
 RUN useradd -m -u 1000 benning && \
     chown -R benning:benning /app
 
 USER benning
 
+# ANCHOR: Expose port
 EXPOSE 5000
 
+# ANCHOR: Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost:5000/health || exit 1
 
+# ANCHOR: Set environment variables
 ENV FLASK_APP=src.main
 ENV FLASK_ENV=production
 ENV PYTHONPATH=/app:$PYTHONPATH
 
+# ANCHOR: Run application
 CMD ["python", "-m", "gunicorn", \
      "--bind", "0.0.0.0:5000", \
      "--workers", "4", \

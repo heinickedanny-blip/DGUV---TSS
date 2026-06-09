@@ -41,11 +41,11 @@ class Container:
         """Initialize all repositories with error handling"""
         try:
             # Get database configuration from environment variables
-            db_host = os.getenv('DB_HOST', 'mysql')
+            db_host = os.getenv('DB_HOST', 'localhost')
             db_port = int(os.getenv('DB_PORT', '3306'))
-            db_user = os.getenv('DB_USER', 'dguv3')
-            db_password = os.getenv('DB_PASSWORD', 'change_me_dguv3')
-            db_name = os.getenv('DB_NAME', 'dguv3_db')
+            db_user = os.getenv('DB_USER', 'benning_user')
+            db_password = os.getenv('DB_PASSWORD', 'benning_password')
+            db_name = os.getenv('DB_NAME', 'benning_db')
             
             self.logger.info(
                 "Initializing repositories",
@@ -81,10 +81,10 @@ class Container:
             print(f"{'='*70}")
             print(f"Details: {e}")
             print(f"Überprüfen Sie folgende Umgebungsvariablen:")
-            print(f"  - DB_HOST: {os.getenv('DB_HOST', 'mysql')}")
+            print(f"  - DB_HOST: {os.getenv('DB_HOST', 'localhost')}")
             print(f"  - DB_PORT: {os.getenv('DB_PORT', '3306')}")
-            print(f"  - DB_USER: {os.getenv('DB_USER', 'dguv3')}")
-            print(f"  - DB_NAME: {os.getenv('DB_NAME', 'dguv3_db')}")
+            print(f"  - DB_USER: {os.getenv('DB_USER', 'benning_user')}")
+            print(f"  - DB_NAME: {os.getenv('DB_NAME', 'benning_db')}")
             print(f"{'='*70}\n")
             raise
     
