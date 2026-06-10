@@ -331,3 +331,173 @@ podman logs "benning-flask" --tail=100
 podman-compose down
 podman volume rm "prg_mysql_data"
 podman-compose up -d --build
+[OK] .env gefunden und geladen: /home/y/Dokumente/vsCode/DGUV3/Software/PRG/.env
+
+DGUV3 Podman Validation
+-----------------------
+[INFO] Projektordner: /home/y/Dokumente/vsCode/DGUV3/Software/PRG
+[INFO] Erwartetes MySQL-Volume: vol_tss_bierwagen
+[INFO] Erwartete Datenbank: db_tss_bierwagen
+[INFO] Erwarteter DB-Benutzer: admin
+[INFO] Erwarteter Flask-Port: 5000
+
+1. Basiswerkzeuge
+-----------------
+[OK] podman ist installiert: podman version 5.8.2
+[OK] podman-compose ist installiert.
+[OK] curl ist installiert.
+
+2. Compose- und .env-Konfiguration
+----------------------------------
+[OK] Compose-Datei gefunden: podman-compose.yml
+[OK] podman-compose config konnte gelesen werden.
+[OK] Compose-Konfiguration zeigt auf Volume: vol_tss_bierwagen
+[OK] MySQL-Datenverzeichnis ist korrekt auf mysql_data:/var/lib/mysql gemappt.
+
+3. Volume-Prüfung
+-----------------
+[OK] Erwartetes Volume existiert: vol_tss_bierwagen
+[INFO] Aktuelle Podman-Volumes mit tss/prg/vol im Namen:
+local       prg_mysql_data
+local       vol_tss_bierwagen
+
+4. Containerstatus
+------------------
+[OK] MySQL-Container existiert: benning-mysql Status=running
+[OK] Flask-Container existiert: benning-flask Status=created
+[INFO] Aktuelle Containerübersicht:
+NAMES          STATUS                        PORTS
+benning-mysql  Up About a minute (starting)  0.0.0.0:3306->3306/tcp, 33060/tcp
+benning-flask  Created                       0.0.0.0:5000->5000/tcp
+
+5. MySQL-Volume-Mount
+---------------------
+vol_tss_bierwagen -> /var/lib/mysql
+ -> /docker-entrypoint-initdb.d
+[OK] MySQL verwendet korrekt das Volume vol_tss_bierwagen für /var/lib/mysql.
+
+6. Port-Prüfung
+---------------
+[FEHLER] Auf Host-Port 5000 lauscht aktuell kein Dienst.
+[WARN] Auf Host-Port 3307 lauscht aktuell kein Dienst.
+
+7. MySQL-Verbindung und Datenbank
+---------------------------------
+[OK] Root-Login in MySQL funktioniert mit DB_ROOT_PASSWORD aus .env.
+[OK] Datenbank existiert: db_tss_bierwagen
+[OK] Datenbankbenutzer existiert: admin
+[OK] Login mit DB_USER/DB_PASSWORD auf db_tss_bierwagen funktioniert.
+
+8. Flask-Container und Anwendungsprozess
+----------------------------------------
+[FEHLER] Flask-Container läuft nicht.
+[WARN] Im Flask-Container wurde kein eindeutiger Python/Gunicorn/Flask-Prozess gefunden.
+[INFO] Letzte Flask-Logs:
+
+9. HTTP-Test
+------------
+[FEHLER] HTTP-Test fehlgeschlagen: http://127.0.0.1:5000 ist nicht erreichbar.
+[INFO] curl-Fehler: curl: (7) Failed to connect to 127.0.0.1 port 5000 after 0 ms: Could not connect to server
+
+10. Zusammenfassung
+-------------------
+OK: 16 | WARN: 2 | FEHLER: 3
+[WARN] Es wurden Fehler gefunden. Häufige Korrektur bei Volume-/Port-/Containerproblemen:
+
+cd "/home/y/Dokumente/vsCode/DGUV3/Software/PRG"
+podman-compose down
+podman rm -f "benning-mysql" "benning-flask" 2>/dev/null || true
+podman-compose up -d --build
+podman ps -a
+podman logs "benning-mysql" --tail=100
+podman logs "benning-flask" --tail=100
+
+[WARN] Wenn das Volume vol_tss_bierwagen frisch initialisiert werden soll und dort keine wichtigen Daten liegen:
+podman-compose down
+podman volume rm "vol_tss_bierwagen"
+podman-compose up -d --build
+[OK] .env gefunden und geladen: /home/y/Dokumente/vsCode/DGUV3/Software/PRG/.env
+
+DGUV3 Podman Validation
+-----------------------
+[INFO] Projektordner: /home/y/Dokumente/vsCode/DGUV3/Software/PRG
+[INFO] Erwartetes MySQL-Volume: vol_tss_bierwagen
+[INFO] Erwartete Datenbank: db_tss_bierwagen
+[INFO] Erwarteter DB-Benutzer: admin
+[INFO] Erwarteter Flask-Port: 5000
+
+1. Basiswerkzeuge
+-----------------
+[OK] podman ist installiert: podman version 5.8.2
+[OK] podman-compose ist installiert.
+[OK] curl ist installiert.
+
+2. Compose- und .env-Konfiguration
+----------------------------------
+[OK] Compose-Datei gefunden: podman-compose.yml
+[OK] podman-compose config konnte gelesen werden.
+[OK] Compose-Konfiguration zeigt auf Volume: vol_tss_bierwagen
+[OK] MySQL-Datenverzeichnis ist korrekt auf mysql_data:/var/lib/mysql gemappt.
+
+3. Volume-Prüfung
+-----------------
+[OK] Erwartetes Volume existiert: vol_tss_bierwagen
+[INFO] Aktuelle Podman-Volumes mit tss/prg/vol im Namen:
+local       prg_mysql_data
+local       vol_tss_bierwagen
+
+4. Containerstatus
+------------------
+[OK] MySQL-Container existiert: benning-mysql Status=running
+[OK] Flask-Container existiert: benning-flask Status=created
+[INFO] Aktuelle Containerübersicht:
+NAMES          STATUS                        PORTS
+benning-mysql  Up About a minute (starting)  0.0.0.0:3307->3306/tcp, 33060/tcp
+benning-flask  Created                       0.0.0.0:5000->5000/tcp
+
+5. MySQL-Volume-Mount
+---------------------
+vol_tss_bierwagen -> /var/lib/mysql
+ -> /docker-entrypoint-initdb.d
+[OK] MySQL verwendet korrekt das Volume vol_tss_bierwagen für /var/lib/mysql.
+
+6. Port-Prüfung
+---------------
+[FEHLER] Auf Host-Port 5000 lauscht aktuell kein Dienst.
+[OK] Auf Host-Port 3307 lauscht ein Dienst für MySQL.
+
+7. MySQL-Verbindung und Datenbank
+---------------------------------
+[OK] Root-Login in MySQL funktioniert mit DB_ROOT_PASSWORD aus .env.
+[OK] Datenbank existiert: db_tss_bierwagen
+[OK] Datenbankbenutzer existiert: admin
+[OK] Login mit DB_USER/DB_PASSWORD auf db_tss_bierwagen funktioniert.
+
+8. Flask-Container und Anwendungsprozess
+----------------------------------------
+[FEHLER] Flask-Container läuft nicht.
+[WARN] Im Flask-Container wurde kein eindeutiger Python/Gunicorn/Flask-Prozess gefunden.
+[INFO] Letzte Flask-Logs:
+
+9. HTTP-Test
+------------
+[FEHLER] HTTP-Test fehlgeschlagen: http://127.0.0.1:5000 ist nicht erreichbar.
+[INFO] curl-Fehler: curl: (7) Failed to connect to 127.0.0.1 port 5000 after 0 ms: Could not connect to server
+
+10. Zusammenfassung
+-------------------
+OK: 17 | WARN: 1 | FEHLER: 3
+[WARN] Es wurden Fehler gefunden. Häufige Korrektur bei Volume-/Port-/Containerproblemen:
+
+cd "/home/y/Dokumente/vsCode/DGUV3/Software/PRG"
+podman-compose down
+podman rm -f "benning-mysql" "benning-flask" 2>/dev/null || true
+podman-compose up -d --build
+podman ps -a
+podman logs "benning-mysql" --tail=100
+podman logs "benning-flask" --tail=100
+
+[WARN] Wenn das Volume vol_tss_bierwagen frisch initialisiert werden soll und dort keine wichtigen Daten liegen:
+podman-compose down
+podman volume rm "vol_tss_bierwagen"
+podman-compose up -d --build

@@ -1,0 +1,12 @@
+    - benning-network
+    ports:
+    - 3306:3306
+    restart: unless-stopped
+    volumes:
+    - mysql_data:/var/lib/mysql
+    - ./init-db:/docker-entrypoint-initdb.d:ro
+version: '3.8'
+volumes:
+  mysql_data:
+    driver: local
+
